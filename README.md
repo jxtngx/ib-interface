@@ -16,3 +16,8 @@
 
 An adaption of [ib-insync](https://github.com/erdewit/ib_insync).
  
+## Installation
+
+```python
+pip install ib-interface
+```
