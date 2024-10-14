@@ -2,11 +2,11 @@ import asyncio
 import sys
 import unittest
 
-import nest_asyncio
+from ib_interface import nest_asyncio
 
 
 def exception_handler(loop, context):
-    print('Exception:', context)
+    print("Exception:", context)
 
 
 class NestTest(unittest.TestCase):
@@ -54,8 +54,7 @@ class NestTest(unittest.TestCase):
 
         async def f():
             task = asyncio.ensure_future(self.coro())
-            done, pending = self.loop.run_until_complete(
-                asyncio.wait([task], return_when=asyncio.ALL_COMPLETED))
+            done, pending = self.loop.run_until_complete(asyncio.wait([task], return_when=asyncio.ALL_COMPLETED))
             task = done.pop()
             return task.result()
 
@@ -83,14 +82,14 @@ class NestTest(unittest.TestCase):
             self.loop.run_until_complete(asyncio.sleep(0.01))
             return 2
 
-        result = self.loop.run_until_complete(
-            asyncio.gather(f1(), f2()))
+        result = self.loop.run_until_complete(asyncio.gather(f1(), f2()))
         self.assertEqual(result, [4, 2])
 
-    @unittest.skipIf(sys.version_info < (3, 7, 0), 'No contextvars module')
+    @unittest.skipIf(sys.version_info < (3, 7, 0), "No contextvars module")
     def test_contextvars(self):
         from contextvars import ContextVar
-        var = ContextVar('var')
+
+        var = ContextVar("var")
         var.set(0)
 
         async def set_val():
@@ -105,5 +104,5 @@ class NestTest(unittest.TestCase):
         self.assertEqual(result, 42)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

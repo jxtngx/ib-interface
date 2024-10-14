@@ -26,16 +26,13 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Justin Goheen",
+    url="https://github.com/jxtngx/ib-interface",
     license="Apache 2.0",
     author_email="",
     zip_safe=False,
     classifiers=[
-        "Environment :: Console",
-        "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Topic :: Scientific/Engineering :: Information Analysis",
         "Topic :: Office/Business :: Financial :: Investment",
-        "Topic :: Software Development :: User Interfaces",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
 )
