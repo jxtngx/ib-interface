@@ -1,0 +1,10 @@
+ruff
+black
+flake8
+pytest
+pytest-asyncio
+mypy
+bandit
+coverage
+pre-commit
+isort
