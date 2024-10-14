@@ -15,7 +15,4 @@
 # IB Interface
 
 An adaption of [ib-insync](https://github.com/erdewit/ib_insync).
-
-> [!NOTE]
-> If you have an ib_insync related question, please join their [groups.io message board](https://groups.io/g/insync). 
  
