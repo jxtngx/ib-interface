@@ -1,5 +1,5 @@
-from .op import Op
-from ..event import Event
+from ib_interface.eventkit.op import Op
+from ib_interface.eventkit..event import Event
 
 
 class Errors(Event):

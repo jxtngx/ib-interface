@@ -14,10 +14,14 @@
 
 # IB Interface
 
-An adaption of [ib-insync](https://github.com/erdewit/ib_insync).
+An adaption of [ib-insync](https://github.com/erdewit/ib_insync) for The Interactive Brokers Python TWS API.
  
 ## Installation
 
 ```python
 pip install ib-interface
 ```
+
+## Usage
+
+See `notebooks` for examples in Jupyter notebooks.

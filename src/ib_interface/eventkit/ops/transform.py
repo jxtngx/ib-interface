@@ -3,9 +3,9 @@ import copy
 import time
 from collections import deque
 
-from .combine import Chain, Concat, Merge, Switch
-from .op import Op
-from ..util import NO_VALUE, get_event_loop
+from ib_interface.eventkit.combine import Chain, Concat, Merge, Switch
+from ib_interface.eventkit.op import Op
+from ib_interface.eventkit..util import NO_VALUE, get_event_loop
 
 
 class Constant(Op):

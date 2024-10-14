@@ -1,9 +1,9 @@
-from .op import Op
-from ..util import NO_VALUE
+from ib_interface.eventkit.ops.op import Op
+from ib_interface.eventkit.util import NO_VALUE
 
 
 class Filter(Op):
-    __slots__ = ('_predicate',)
+    __slots__ = ("_predicate",)
 
     def __init__(self, predicate=bool, source=None):
         Op.__init__(self, source)
@@ -15,7 +15,7 @@ class Filter(Op):
 
 
 class Skip(Op):
-    __slots__ = ('_count', '_n')
+    __slots__ = ("_count", "_n")
 
     def __init__(self, count=1, source=None):
         Op.__init__(self, source)
@@ -30,7 +30,7 @@ class Skip(Op):
 
 
 class Take(Op):
-    __slots__ = ('_count', '_n')
+    __slots__ = ("_count", "_n")
 
     def __init__(self, count=1, source=None):
         Op.__init__(self, source)
@@ -47,7 +47,7 @@ class Take(Op):
 
 
 class TakeWhile(Op):
-    __slots__ = ('_predicate',)
+    __slots__ = ("_predicate",)
 
     def __init__(self, predicate=bool, source=None):
         Op.__init__(self, source)
@@ -62,7 +62,7 @@ class TakeWhile(Op):
 
 
 class DropWhile(Op):
-    __slots__ = ('_predicate', '_drop')
+    __slots__ = ("_predicate", "_drop")
 
     def __init__(self, predicate=lambda x: not x, source=None):
         Op.__init__(self, source)
@@ -77,30 +77,24 @@ class DropWhile(Op):
 
 
 class TakeUntil(Op):
-    __slots__ = ('_notifier',)
+    __slots__ = ("_notifier",)
 
     def __init__(self, notifier, source=None):
         Op.__init__(self, source)
         self._notifier = notifier
-        notifier.connect(
-            self._on_notifier,
-            self.on_source_error,
-            self.on_source_done)
+        notifier.connect(self._on_notifier, self.on_source_error, self.on_source_done)
 
     def _on_notifier(self, *args):
         self.on_source_done(self._source)
 
     def on_source_done(self, source):
         Op.on_source_done(self, self._source)
-        self._notifier.disconnect(
-            self._on_notifier,
-            self.on_source_error,
-            self.on_source_done)
+        self._notifier.disconnect(self._on_notifier, self.on_source_error, self.on_source_done)
         self._notifier = None
 
 
 class Changes(Op):
-    __slots__ = ('_prev',)
+    __slots__ = ("_prev",)
 
     def __init__(self, source=None):
         Op.__init__(self, source)
@@ -113,7 +107,7 @@ class Changes(Op):
 
 
 class Unique(Op):
-    __slots__ = ('_key', '_seen')
+    __slots__ = ("_key", "_seen")
 
     def __init__(self, key, source=None):
         Op.__init__(self, source)
@@ -131,7 +125,7 @@ class Unique(Op):
 
 
 class Last(Op):
-    __slots__ = ('_last',)
+    __slots__ = ("_last",)
 
     def __init__(self, source=None):
         Op.__init__(self, source)

@@ -4,7 +4,7 @@ import types
 import weakref
 from typing import Any as AnyType, AsyncIterable, Awaitable, Iterable, List, Optional, Tuple, Union
 
-from .util import NO_VALUE, get_event_loop, main_event_loop
+from ib_interface.eventkit.util import NO_VALUE, get_event_loop, main_event_loop
 
 
 class Event:
@@ -1286,15 +1286,39 @@ class Event:
         return EndOnError(self)
 
 
-from .ops.aggregate import All, Any, Count, Deque, Ema, List as ListOp, Max, Mean, Min, Pairwise, Product, Reduce, Sum
-from .ops.array import Array, ArrayAll, ArrayAny, ArrayMax, ArrayMean, ArrayMin, ArrayProd, ArrayStd, ArraySum
-from .ops.combine import AddableJoinOp, Chain, Concat, Fork, Merge, Switch, Zip, Ziplatest
-from .ops.create import Aiterate, Marble, Range, Repeat, Sequence, Timer, Timerange, Wait
-from .ops.misc import EndOnError, Errors
-from .ops.op import Op
-from .ops.select import Changes, DropWhile, Filter, Last, Skip, Take, TakeUntil, TakeWhile, Unique
-from .ops.timing import Debounce, Delay, Sample, Throttle, Timeout
-from .ops.transform import (
+from ib_interface.eventkit.ops.aggregate import (
+    All,
+    Any,
+    Count,
+    Deque,
+    Ema,
+    List as ListOp,
+    Max,
+    Mean,
+    Min,
+    Pairwise,
+    Product,
+    Reduce,
+    Sum,
+)
+from ib_interface.eventkit.ops.array import (
+    Array,
+    ArrayAll,
+    ArrayAny,
+    ArrayMax,
+    ArrayMean,
+    ArrayMin,
+    ArrayProd,
+    ArrayStd,
+    ArraySum,
+)
+from ib_interface.eventkit.ops.combine import AddableJoinOp, Chain, Concat, Fork, Merge, Switch, Zip, Ziplatest
+from ib_interface.eventkit.ops.create import Aiterate, Marble, Range, Repeat, Sequence, Timer, Timerange, Wait
+from ib_interface.eventkit.ops.misc import EndOnError, Errors
+from ib_interface.eventkit.ops.op import Op
+from ib_interface.eventkit.ops.select import Changes, DropWhile, Filter, Last, Skip, Take, TakeUntil, TakeWhile, Unique
+from ib_interface.eventkit.ops.timing import Debounce, Delay, Sample, Throttle, Timeout
+from ib_interface.eventkit.ops.transform import (
     Chainmap,
     Chunk,
     ChunkWith,

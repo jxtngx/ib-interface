@@ -21,7 +21,7 @@ long_description = (rootdir / "README.md").read_text()
 
 setup(
     name="ib_interface",
-    version="0.0.1",
+    version="0.0.2",
     description="A Python Framework for Interactive Brokers TWS API",
     long_description=long_description,
     long_description_content_type="text/markdown",

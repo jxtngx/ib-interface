@@ -1,6 +1,6 @@
 import pytest
 
-import ib_interface.api as ibi
+import ib_interface as ibi
 
 pytestmark = pytest.mark.asyncio
 
