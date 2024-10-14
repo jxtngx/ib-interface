@@ -45,4 +45,3 @@ from ib_interface.eventkit.ops.transform import (
     Switchmap,
     Timestamp,
 )
-from ib_interface.eventkit.version import __version__, __version_info__
