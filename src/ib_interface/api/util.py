@@ -38,6 +38,7 @@ def df(objs, labels: Optional[List[str]] = None):
       labels: If supplied, retain only the given labels and drop the rest.
     """
     import pandas as pd
+
     from ib_interface.api.objects import DynamicObject
 
     if objs:
@@ -160,8 +161,8 @@ def barplot(bars, title="", upColor="blue", downColor="red"):
     Create candlestick plot for the given bars. The bars can be given as
     a DataFrame or as a list of bar objects.
     """
-    import pandas as pd
     import matplotlib.pyplot as plt
+    import pandas as pd
     from matplotlib.lines import Line2D
     from matplotlib.patches import Rectangle
 
@@ -451,49 +452,6 @@ def getLoop():
 def startLoop():
     """Use nested asyncio event loop for Jupyter notebooks."""
     patchAsyncio()
-
-
-def useQt(qtLib: str = "PyQt5", period: float = 0.01):
-    """
-    Run combined Qt5/asyncio event loop.
-
-    Args:
-        qtLib: Name of Qt library to use:
-
-          * PyQt5
-          * PyQt6
-          * PySide2
-          * PySide6
-        period: Period in seconds to poll Qt.
-    """
-
-    def qt_step():
-        loop.call_later(period, qt_step)
-        if not stack:
-            qloop = qc.QEventLoop()
-            timer = qc.QTimer()
-            timer.timeout.connect(qloop.quit)
-            stack.append((qloop, timer))
-        qloop, timer = stack.pop()
-        timer.start(0)
-        qloop.exec() if qtLib == "PyQt6" else qloop.exec_()
-        timer.stop()
-        stack.append((qloop, timer))
-        qApp.processEvents()  # type: ignore
-
-    if qtLib not in ("PyQt5", "PyQt6", "PySide2", "PySide6"):
-        raise RuntimeError(f"Unknown Qt library: {qtLib}")
-    from importlib import import_module
-
-    qc = import_module(qtLib + ".QtCore")
-    qw = import_module(qtLib + ".QtWidgets")
-    global qApp
-    qApp = qw.QApplication.instance() or qw.QApplication(  # type: ignore
-        sys.argv
-    )  # type: ignore
-    loop = getLoop()
-    stack: list = []
-    qt_step()
 
 
 def formatIBDatetime(t: Union[dt.date, dt.datetime, str, None]) -> str:
