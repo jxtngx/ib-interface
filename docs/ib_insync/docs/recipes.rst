@@ -268,7 +268,7 @@ run for short whiles and keep up to date:
 
 .. code-block:: python
 
-    import ib_insync as ibi
+    import ib_interface as ibi
     import pygame
 
 

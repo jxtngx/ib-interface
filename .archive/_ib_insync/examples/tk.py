@@ -1,8 +1,8 @@
 import asyncio
 import tkinter as tk
 
-from ib_insync import IB, util
-from ib_insync.contract import *  # noqa
+from ib_interface import IB, util
+from ib_interface.contract import *  # noqa
 
 util.patchAsyncio()
 
@@ -11,15 +11,15 @@ class TkApp:
     """
     Example of integrating with Tkinter.
     """
+
     def __init__(self):
         self.ib = IB().connect()
         self.root = tk.Tk()
-        self.root.protocol('WM_DELETE_WINDOW', self._onDeleteWindow)
+        self.root.protocol("WM_DELETE_WINDOW", self._onDeleteWindow)
         self.entry = tk.Entry(self.root, width=50)
         self.entry.insert(0, "Stock('TSLA', 'SMART', 'USD')")
         self.entry.grid()
-        self.button = tk.Button(
-            self.root, text='Get details', command=self.onButtonClick)
+        self.button = tk.Button(self.root, text="Get details", command=self.onButtonClick)
         self.button.grid()
         self.text = tk.Text(self.root)
         self.text.grid()
