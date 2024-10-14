@@ -38,7 +38,7 @@ def df(objs, labels: Optional[List[str]] = None):
       labels: If supplied, retain only the given labels and drop the rest.
     """
     import pandas as pd
-    from .objects import DynamicObject
+    from ib_interface.api.objects import DynamicObject
 
     if objs:
         objs = list(objs)

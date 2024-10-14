@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 from ib_interface import eventkit as ev
 
 loop = asyncio.get_event_loop_policy().get_event_loop()

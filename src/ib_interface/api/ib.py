@@ -7,7 +7,7 @@ import logging
 import time
 from typing import Awaitable, Dict, Iterator, List, Optional, Union
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 
 import api.util as util
 from api.client import Client

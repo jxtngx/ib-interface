@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar, List, Optional, Union
 
-from eventkit import Event, Op
+from ib_interface.eventkit import Event, Op
 
 from api.contract import Contract
 from api.objects import (

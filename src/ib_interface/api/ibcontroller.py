@@ -7,7 +7,7 @@ from contextlib import suppress
 from dataclasses import dataclass
 from typing import ClassVar
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 
 import api.util as util
 from api.contract import Contract, Forex

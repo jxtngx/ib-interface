@@ -2,7 +2,7 @@
 
 import asyncio
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 
 from api.util import getLoop
 

@@ -1,7 +1,7 @@
 import unittest
 import time
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 
 array1 = list(range(10))
 array2 = list(range(100, 110))
@@ -29,22 +29,21 @@ class TimingTest(unittest.TestCase):
         self.assertEqual(event.run(), [Event.NO_VALUE])
 
     def test_debounce(self):
-        event = Event.range(10, interval=0.05) \
-            .mergemap(lambda t: Event.sequence(array2, 0.001)) \
-            .debounce(0.01)
+        event = Event.range(10, interval=0.05).mergemap(lambda t: Event.sequence(array2, 0.001)).debounce(0.01)
         self.assertEqual(event.run(), [109] * 10)
 
     def test_debounce_on_first(self):
-        event = Event.range(10, interval=0.05) \
-            .mergemap(lambda t: Event.sequence(array2, 0.001)) \
+        event = (
+            Event.range(10, interval=0.05)
+            .mergemap(lambda t: Event.sequence(array2, 0.001))
             .debounce(0.02, on_first=True)
+        )
         self.assertEqual(event.run(), [100] * 10)
 
     def test_throttle(self):
         t0 = time.time()
         a = list(range(500))
-        event = Event.sequence(a) \
-            .throttle(1000, 0.1, cost_func=lambda i: 10)
+        event = Event.sequence(a).throttle(1000, 0.1, cost_func=lambda i: 10)
         result = event.run()
         self.assertEqual(result, a)
         dt = time.time() - t0

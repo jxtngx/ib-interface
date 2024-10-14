@@ -1,6 +1,6 @@
 import unittest
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 
 array = list(range(10))
 

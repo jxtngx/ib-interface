@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 
-from eventkit import Event
+from ib_interface.eventkit import Event
 
 array1 = list(range(10))
 array2 = list(range(100, 110))
@@ -22,10 +22,11 @@ class CreateTest(unittest.TestCase):
             await asyncio.sleep(0)
             for i in array1:
                 yield i
+
         event = Event.aiterate(ait())
         self.assertEqual(event.run(), array1)
 
     def test_marble(self):
-        s = '   a b c   d e f'
+        s = "   a b c   d e f"
         event = Event.marble(s, interval=0.001)
-        self.assertEqual(event.run(), [c for c in 'abcdef'])
+        self.assertEqual(event.run(), [c for c in "abcdef"])
