@@ -14,7 +14,7 @@
 
 # IB Interface
 
-An adaption of [ib-insync](https://github.com/erdewit/ib_insync) for The Interactive Brokers Python TWS API.
+An adaption of [ib-insync](https://github.com/erdewit/ib_insync) for the Interactive Brokers Python TWS API.
  
 ## Installation
 
