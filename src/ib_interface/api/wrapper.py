@@ -1,3 +1,17 @@
+# Copyright Justin R. Goheen.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Wrapper to handle incoming messages."""
 
 import asyncio
@@ -5,7 +19,7 @@ import logging
 from collections import defaultdict
 from contextlib import suppress
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional, Set, TYPE_CHECKING, Tuple, Union, cast
+from typing import Any, cast, Dict, List, Optional, Set, Tuple, TYPE_CHECKING, Union
 
 from api.contract import Contract, ContractDescription, ContractDetails, DeltaNeutralContract, ScanData
 from api.objects import (
@@ -13,9 +27,9 @@ from api.objects import (
     BarData,
     BarDataList,
     CommissionReport,
-    DOMLevel,
     DepthMktDataDescription,
     Dividends,
+    DOMLevel,
     Execution,
     FamilyCode,
     Fill,
@@ -53,14 +67,14 @@ from api.objects import (
 from api.order import Order, OrderState, OrderStatus, Trade
 from api.ticker import Ticker
 from api.util import (
-    UNSET_DOUBLE,
-    UNSET_INTEGER,
     dataclassAsDict,
     dataclassUpdate,
     getLoop,
     globalErrorEvent,
     isNan,
     parseIBDatetime,
+    UNSET_DOUBLE,
+    UNSET_INTEGER,
 )
 
 if TYPE_CHECKING:

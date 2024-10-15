@@ -1,3 +1,17 @@
+# Copyright Justin R. Goheen.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import asyncio
 import sys
 import unittest
@@ -27,7 +41,6 @@ class NestTest(unittest.TestCase):
         return 42
 
     def test_nesting(self):
-
         async def f1():
             result = self.loop.run_until_complete(self.coro())
             self.assertEqual(result, await self.coro())
@@ -42,7 +55,6 @@ class NestTest(unittest.TestCase):
         self.assertEqual(result, 42)
 
     def test_ensure_future_with_run_until_complete(self):
-
         async def f():
             task = asyncio.ensure_future(self.coro())
             return self.loop.run_until_complete(task)
@@ -51,7 +63,6 @@ class NestTest(unittest.TestCase):
         self.assertEqual(result, 42)
 
     def test_ensure_future_with_run_until_complete_with_wait(self):
-
         async def f():
             task = asyncio.ensure_future(self.coro())
             done, pending = self.loop.run_until_complete(asyncio.wait([task], return_when=asyncio.ALL_COMPLETED))
@@ -62,7 +73,6 @@ class NestTest(unittest.TestCase):
         self.assertEqual(result, 42)
 
     def test_timeout(self):
-
         async def f1():
             await asyncio.sleep(0.1)
 
@@ -73,7 +83,6 @@ class NestTest(unittest.TestCase):
             self.loop.run_until_complete(f2())
 
     def test_two_run_until_completes_in_one_outer_loop(self):
-
         async def f1():
             self.loop.run_until_complete(asyncio.sleep(0.02))
             return 4

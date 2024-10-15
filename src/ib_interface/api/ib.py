@@ -1,3 +1,17 @@
+# Copyright Justin R. Goheen.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """High-level interface to Interactive Brokers."""
 
 import asyncio
@@ -6,8 +20,6 @@ import datetime
 import logging
 import time
 from typing import Awaitable, Dict, Iterator, List, Optional, Union
-
-from ib_interface.eventkit import Event
 
 import api.util as util
 from api.client import Client
@@ -44,6 +56,8 @@ from api.objects import (
 from api.order import BracketOrder, LimitOrder, Order, OrderState, OrderStatus, StopOrder, Trade
 from api.ticker import Ticker
 from api.wrapper import Wrapper
+
+from ib_interface.eventkit import Event
 
 
 class IB:
@@ -1782,14 +1796,17 @@ class IB:
             #   - Earnings Dates (wshe_ed)
             #   - Board of Directors meetings (wshe_bod)
             data = WshEventData(
-                filter = '''{
-                  "country": "All",
-                  "watchlist": ["8314"],
-                  "limit_region": 10,
-                  "limit": 10,
-                  "wshe_ed": "true",
-                  "wshe_bod": "true"
-                }''')
+                filter=json.dumps(
+                    {
+                        "country": "All",
+                        "watchlist": ["8314"],
+                        "limit_region": 10,
+                        "limit": 10,
+                        "wshe_ed": "true",
+                        "wshe_bod": "true",
+                    }
+                )
+            )
             events = ib.getWshEventData(data)
             print(events)
         """

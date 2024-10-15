@@ -1,3 +1,17 @@
+# Copyright Justin R. Goheen.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Programmatic control over the TWS/gateway client software."""
 
 import asyncio
@@ -7,11 +21,11 @@ from contextlib import suppress
 from dataclasses import dataclass
 from typing import ClassVar
 
-from ib_interface.eventkit import Event
-
 import api.util as util
 from api.contract import Contract, Forex
 from api.ib import IB
+
+from ib_interface.eventkit import Event
 
 
 @dataclass
@@ -69,14 +83,14 @@ class IBC:
     .. code-block:: python
 
         import asyncio
+
         asyncio.set_event_loop(asyncio.ProactorEventLoop())
 
     Example usage:
 
     .. code-block:: python
 
-        ibc = IBC(976, gateway=True, tradingMode='live',
-            userid='edemo', password='demouser')
+        ibc = IBC(976, gateway=True, tradingMode="live", userid="edemo", password="demouser")
         ibc.start()
         IB.run()
     """
@@ -225,7 +239,8 @@ class Watchdog:
         def onConnected():
             print(ib.accountValues())
 
-        ibc = IBC(974, gateway=True, tradingMode='paper')
+
+        ibc = IBC(974, gateway=True, tradingMode="paper")
         ib = IB()
         ib.connectedEvent += onConnected
         watchdog = Watchdog(ibc, ib, port=4002)
@@ -287,7 +302,6 @@ class Watchdog:
         self._runner = None
 
     async def runAsync(self):
-
         def onTimeout(idlePeriod):
             if not waiter.done():
                 waiter.set_result(None)

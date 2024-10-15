@@ -1,13 +1,26 @@
+# Copyright Justin R. Goheen.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Order types used by Interactive Brokers."""
 
 from dataclasses import dataclass, field
 from typing import ClassVar, FrozenSet, List, NamedTuple
 
-from ib_interface.eventkit import Event
-
 from ib_interface.api.contract import Contract, TagValue
 from ib_interface.api.objects import Fill, SoftDollarTier, TradeLogEntry
-from ib_interface.api.util import UNSET_DOUBLE, UNSET_INTEGER, dataclassNonDefaults
+from ib_interface.api.util import dataclassNonDefaults, UNSET_DOUBLE, UNSET_INTEGER
+from ib_interface.eventkit import Event
 
 
 @dataclass
@@ -178,25 +191,21 @@ class Order:
 
 
 class LimitOrder(Order):
-
     def __init__(self, action: str, totalQuantity: float, lmtPrice: float, **kwargs):
         Order.__init__(self, orderType="LMT", action=action, totalQuantity=totalQuantity, lmtPrice=lmtPrice, **kwargs)
 
 
 class MarketOrder(Order):
-
     def __init__(self, action: str, totalQuantity: float, **kwargs):
         Order.__init__(self, orderType="MKT", action=action, totalQuantity=totalQuantity, **kwargs)
 
 
 class StopOrder(Order):
-
     def __init__(self, action: str, totalQuantity: float, stopPrice: float, **kwargs):
         Order.__init__(self, orderType="STP", action=action, totalQuantity=totalQuantity, auxPrice=stopPrice, **kwargs)
 
 
 class StopLimitOrder(Order):
-
     def __init__(self, action: str, totalQuantity: float, lmtPrice: float, stopPrice: float, **kwargs):
         Order.__init__(
             self,
@@ -334,7 +343,6 @@ class BracketOrder(NamedTuple):
 
 @dataclass
 class OrderCondition:
-
     @staticmethod
     def createClass(condType):
         d = {

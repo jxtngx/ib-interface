@@ -1,3 +1,17 @@
+# Copyright Justin R. Goheen.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Financial instrument types used by Interactive Brokers."""
 
 import datetime as dt
@@ -169,7 +183,6 @@ class Contract:
 
 
 class Stock(Contract):
-
     def __init__(self, symbol: str = "", exchange: str = "", currency: str = "", **kwargs):
         """
         Stock contract.
@@ -183,7 +196,6 @@ class Stock(Contract):
 
 
 class Option(Contract):
-
     def __init__(
         self,
         symbol: str = "",
@@ -227,7 +239,6 @@ class Option(Contract):
 
 
 class Future(Contract):
-
     def __init__(
         self,
         symbol: str = "",
@@ -267,7 +278,6 @@ class Future(Contract):
 
 
 class ContFuture(Contract):
-
     def __init__(
         self,
         symbol: str = "",
@@ -300,7 +310,6 @@ class ContFuture(Contract):
 
 
 class Forex(Contract):
-
     def __init__(self, pair: str = "", exchange: str = "IDEALPRO", symbol: str = "", currency: str = "", **kwargs):
         """
         Foreign exchange currency pair.
@@ -337,7 +346,6 @@ class Forex(Contract):
 
 
 class Index(Contract):
-
     def __init__(self, symbol: str = "", exchange: str = "", currency: str = "", **kwargs):
         """
         Index.
@@ -351,7 +359,6 @@ class Index(Contract):
 
 
 class CFD(Contract):
-
     def __init__(self, symbol: str = "", exchange: str = "", currency: str = "", **kwargs):
         """
         Contract For Difference.
@@ -365,7 +372,6 @@ class CFD(Contract):
 
 
 class Commodity(Contract):
-
     def __init__(self, symbol: str = "", exchange: str = "", currency: str = "", **kwargs):
         """
         Commodity.
@@ -379,14 +385,12 @@ class Commodity(Contract):
 
 
 class Bond(Contract):
-
     def __init__(self, **kwargs):
         """Bond."""
         Contract.__init__(self, "BOND", **kwargs)
 
 
 class FuturesOption(Contract):
-
     def __init__(
         self,
         symbol: str = "",
@@ -430,28 +434,24 @@ class FuturesOption(Contract):
 
 
 class MutualFund(Contract):
-
     def __init__(self, **kwargs):
         """Mutual fund."""
         Contract.__init__(self, "FUND", **kwargs)
 
 
 class Warrant(Contract):
-
     def __init__(self, **kwargs):
         """Warrant option."""
         Contract.__init__(self, "WAR", **kwargs)
 
 
 class Bag(Contract):
-
     def __init__(self, **kwargs):
         """Bag contract."""
         Contract.__init__(self, "BAG", **kwargs)
 
 
 class Crypto(Contract):
-
     def __init__(self, symbol: str = "", exchange: str = "", currency: str = "", **kwargs):
         """
         Crypto currency contract.
