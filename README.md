@@ -33,7 +33,7 @@ pip install ib-interface
 This is a complete script to download historical data:
 
 ```python
-from ib_insync import *
+from ib_interface import *
 
 # util.startLoop()  # uncomment this line when in a notebook
 

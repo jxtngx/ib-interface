@@ -18,7 +18,7 @@ and further back in time until there is no more data returned.
 .. code-block:: python
 
     import datetime
-    from ib_insync import *
+    from ib_interface import *
 
     ib = IB()
     ib.connect("127.0.0.1", 7497, clientId=1)
@@ -146,7 +146,7 @@ is needed to get corporate event data.
 
 .. code-block:: python
 
-    from ib_insync import *
+    from ib_interface import *
 
     ib = IB()
     ib.connect("127.0.0.1", 7497, clientId=1)
