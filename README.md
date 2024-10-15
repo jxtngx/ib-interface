@@ -52,6 +52,12 @@ The goal is for `ib-inysnc` users to be able to simply refactor their imports as
 
 ## Example
 
+> [!IMPORTANT]
+> a running TWS instance is needed to connect to the API
+
+> [!IMPORTANT]
+> Make sure the [API port is enabled](https://ibkrcampus.com/campus/ibkr-api-page/twsapi-doc/#tws-config-api) and 'Download open orders on connection' is checked.
+
 This is a complete script to download historical data:
 
 ```python
