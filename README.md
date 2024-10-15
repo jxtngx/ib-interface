@@ -61,3 +61,7 @@ Output
 ..                  ...       ...       ...       ...       ...     ...
 705 2020-01-02 14:00:00  1.119325  1.119675  1.119075  1.119225      -1
 ```
+
+# Acknowledgements
+
+Thank you to Ewald de Wit for creating and maintaining ib-insync, eventkit, and nest-asyncio.
