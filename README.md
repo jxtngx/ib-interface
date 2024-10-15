@@ -14,13 +14,16 @@
 
 # IB Interface
 
-An adaption of [ib-insync](https://github.com/erdewit/ib_insync) for the Interactive Brokers Python TWS API.
+An adaption and continuation of [ib-insync](https://github.com/erdewit/ib_insync) for the Interactive Brokers Python TWS API.
 
 > [!IMPORTANT]
 > this project is not affiliated with Interactive Brokers
 
 > [!IMPORTANT]
-> The ibapi package from IB is not needed.
+> The ibapi package from IB is not needed
+
+> [!NOTE]
+> ib-insync has been archived
 
 ## Installation
 
