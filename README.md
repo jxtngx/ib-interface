@@ -46,8 +46,8 @@ The goal is for `ib-inysnc` users to be able to simply refactor their imports as
 ```
 
 ```diff
-- from ib_insync.{some module} import {some class or function}
-+ from ib_interface.{some module} import {some class or function}
+- from ib_insync.{some module} import {some submodule or class or function}
++ from ib_interface.{some module} import {some submodule or class or function}
 ```
 
 ## Example
