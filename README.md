@@ -28,6 +28,20 @@ An adaption of [ib-insync](https://github.com/erdewit/ib_insync) for the Interac
 pip install ib-interface
 ```
 
+## Usage
+
+The goal is for `ib-inysnc` users to be able to simply refactor their imports as:
+
+```diff
+- from ib_insync import *
++ from ib_interface import *
+```
+
+```diff
+- from ib_insync.{some module} import {some class or function}
++ from ib_interface.{some module} import {some class or function}
+```
+
 ## Example
 
 This is a complete script to download historical data:
