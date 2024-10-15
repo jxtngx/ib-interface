@@ -16,6 +16,13 @@
 
 An adaption and continuation of [ib-insync](https://github.com/erdewit/ib_insync) for the Interactive Brokers Python TWS API.
 
+The main features are:
+
+* An easy to use linear style of programming
+* An `IB component` that automatically keeps in sync with the TWS or IB Gateway application
+* A fully asynchonous framework based on `asyncio`
+* Interactive operation with live data in Jupyter notebooks
+
 > [!IMPORTANT]
 > this project is not affiliated with Interactive Brokers
 
@@ -53,7 +60,7 @@ The goal is for `ib-inysnc` users to be able to simply refactor their imports as
 ## Example
 
 > [!IMPORTANT]
-> a running TWS instance is needed to connect to the API
+> a running TWS or Gateway instance is needed to connect to the API
 
 > [!IMPORTANT]
 > Make sure the [API port is enabled](https://ibkrcampus.com/campus/ibkr-api-page/twsapi-doc/#tws-config-api) and 'Download open orders on connection' is checked.
