@@ -33,6 +33,11 @@ pip install ib-interface
 The goal is for `ib-inysnc` users to be able to simply refactor their imports as:
 
 ```diff
+- import ib_insync as ibi
++ import ib_interface as ibi
+```
+
+```diff
 - from ib_insync import *
 + from ib_interface import *
 ```
