@@ -1,9 +1,9 @@
-from ib_interface.eventkit.op import Op
-from ib_interface.eventkit..event import Event
+from ib_interface.eventkit.event import Event
+from ib_interface.eventkit.ops.op import Op
 
 
 class Errors(Event):
-    __slots__ = ('_source',)
+    __slots__ = ("_source",)
 
     def __init__(self, source=None):
         Event.__init__(self)

@@ -14,14 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import ib_interface.eventkit as eventkit
-import ib_interface.nest_asyncio as nest_asyncio
-
 import dataclasses
 import sys
 
-from ib_interface.eventkit import Event
-
+import ib_interface.eventkit as eventkit  # noqa: F401
+import ib_interface.nest_asyncio as nest_asyncio  # noqa: F401
 from ib_interface.api import util
 from ib_interface.api.client import Client
 from ib_interface.api.contract import (
@@ -56,9 +53,9 @@ from ib_interface.api.objects import (
     BarDataList,
     CommissionReport,
     ConnectionStats,
-    DOMLevel,
     DepthMktDataDescription,
     Dividends,
+    DOMLevel,
     Execution,
     ExecutionFilter,
     FamilyCode,
@@ -121,6 +118,7 @@ from ib_interface.api.order import (
 from ib_interface.api.ticker import Ticker
 from ib_interface.api.version import __version__, __version_info__
 from ib_interface.api.wrapper import RequestError, Wrapper
+from ib_interface.eventkit import Event
 
 __all__ = [
     "Event",
