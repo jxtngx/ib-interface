@@ -64,7 +64,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/jxtngx',
+          href: 'https://github.com/jxtngx/ib-interface',
           label: 'GitHub',
           position: 'right',
         },
