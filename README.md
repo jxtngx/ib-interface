@@ -40,7 +40,7 @@ pip install ib-interface
 
 ## Usage
 
-The goal is for `ib-inysnc` users to be able to simply refactor their imports as:
+The goal is for `ib-insync` users to be able to simply refactor their imports as:
 
 ```diff
 - import ib_insync as ibi
