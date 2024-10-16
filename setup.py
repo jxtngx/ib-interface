@@ -14,19 +14,24 @@
 
 from pathlib import Path
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 rootdir = Path(__file__).parent
 long_description = (rootdir / "README.md").read_text()
 
+package_name = "ib_interface"
+
 setup(
-    name="ib_interface",
-    version="0.0.3",
-    description="A Python Framework for Interactive Brokers TWS API",
+    name=package_name,
+    version="0.0.4",
+    package_dir={"": "src"},
+    packages=find_packages(where="src", include=[package_name, f"{package_name}.*"]),
+    include_package_data=True,
+    setup_requires=["wheel"],
+    description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Justin Goheen",
-    url="https://github.com/jxtngx/ib-interface",
+    author="",
     license="Apache 2.0",
     author_email="",
     zip_safe=False,

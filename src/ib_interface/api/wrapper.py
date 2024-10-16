@@ -21,8 +21,8 @@ from contextlib import suppress
 from datetime import datetime, timezone
 from typing import Any, cast, Dict, List, Optional, Set, Tuple, TYPE_CHECKING, Union
 
-from api.contract import Contract, ContractDescription, ContractDetails, DeltaNeutralContract, ScanData
-from api.objects import (
+from ib_interface.api.contract import Contract, ContractDescription, ContractDetails, DeltaNeutralContract, ScanData
+from ib_interface.api.objects import (
     AccountValue,
     BarData,
     BarDataList,
@@ -64,9 +64,9 @@ from api.objects import (
     TickData,
     TradeLogEntry,
 )
-from api.order import Order, OrderState, OrderStatus, Trade
-from api.ticker import Ticker
-from api.util import (
+from ib_interface.api.order import Order, OrderState, OrderStatus, Trade
+from ib_interface.api.ticker import Ticker
+from ib_interface.api.util import (
     dataclassAsDict,
     dataclassUpdate,
     getLoop,
@@ -78,7 +78,7 @@ from api.util import (
 )
 
 if TYPE_CHECKING:
-    from api.ib import IB
+    from ib_interface.api.ib import IB
 
 
 OrderKeyType = Union[int, Tuple[int, int]]

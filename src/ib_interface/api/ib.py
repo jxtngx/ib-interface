@@ -21,10 +21,10 @@ import logging
 import time
 from typing import Awaitable, Dict, Iterator, List, Optional, Union
 
-import api.util as util
-from api.client import Client
-from api.contract import Contract, ContractDescription, ContractDetails
-from api.objects import (
+import ib_interface.api.util as util
+from ib_interface.api.client import Client
+from ib_interface.api.contract import Contract, ContractDescription, ContractDetails
+from ib_interface.api.objects import (
     AccountValue,
     BarDataList,
     DepthMktDataDescription,
@@ -53,10 +53,9 @@ from api.objects import (
     TradeLogEntry,
     WshEventData,
 )
-from api.order import BracketOrder, LimitOrder, Order, OrderState, OrderStatus, StopOrder, Trade
-from api.ticker import Ticker
-from api.wrapper import Wrapper
-
+from ib_interface.api.order import BracketOrder, LimitOrder, Order, OrderState, OrderStatus, StopOrder, Trade
+from ib_interface.api.ticker import Ticker
+from ib_interface.api.wrapper import Wrapper
 from ib_interface.eventkit import Event
 
 

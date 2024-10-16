@@ -24,7 +24,7 @@ import time
 from dataclasses import fields, is_dataclass
 from typing import AsyncIterator, Awaitable, Callable, Iterator, List, Optional, Union
 
-from ib_interface import eventkit as ev
+from ib_interface.eventkit.event import Event
 
 try:
     from zoneinfo import ZoneInfo
@@ -32,7 +32,7 @@ except ImportError:
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
 
-globalErrorEvent = ev.Event()
+globalErrorEvent = Event()
 """
 Event to emit global exceptions.
 """

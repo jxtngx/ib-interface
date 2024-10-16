@@ -20,8 +20,8 @@ import xml.etree.ElementTree as et
 from contextlib import suppress
 from urllib.request import urlopen
 
-from api import util
-from api.objects import DynamicObject
+from ib_interface.api import util
+from ib_interface.api.objects import DynamicObject
 
 _logger = logging.getLogger("ib_insync.flexreport")
 

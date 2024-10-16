@@ -19,38 +19,6 @@ import weakref
 from typing import Any as AnyType
 from typing import AsyncIterable, Awaitable, Iterable, List, Optional, Tuple, Union
 
-from ib_interface.eventkit.ops.aggregate import All, Any, Count, Deque, Ema
-from ib_interface.eventkit.ops.aggregate import List as ListOp
-from ib_interface.eventkit.ops.aggregate import Max, Mean, Min, Pairwise, Product, Reduce, Sum
-from ib_interface.eventkit.ops.array import Array
-from ib_interface.eventkit.ops.combine import AddableJoinOp, Chain, Concat, Fork, Merge, Switch, Zip, Ziplatest
-from ib_interface.eventkit.ops.create import Aiterate, Marble, Range, Repeat, Sequence, Timer, Timerange, Wait
-from ib_interface.eventkit.ops.misc import EndOnError, Errors
-from ib_interface.eventkit.ops.op import Op
-from ib_interface.eventkit.ops.select import Changes, DropWhile, Filter, Last, Skip, Take, TakeUntil, TakeWhile, Unique
-from ib_interface.eventkit.ops.timing import Debounce, Delay, Sample, Throttle, Timeout
-from ib_interface.eventkit.ops.transform import (
-    Chainmap,
-    Chunk,
-    ChunkWith,
-    Concatmap,
-    Constant,
-    Copy,
-    Deepcopy,
-    Emap,
-    Enumerate,
-    Iterate,
-    Map,
-    Mergemap,
-    Pack,
-    Partial,
-    PartialRight,
-    Pluck,
-    Previous,
-    Star,
-    Switchmap,
-    Timestamp,
-)
 from ib_interface.eventkit.util import get_event_loop, main_event_loop, NO_VALUE
 
 
@@ -133,7 +101,7 @@ class Event:
 
         The ``+=`` operator can be used as a synonym for this method::
 
-            from ib_interface import eventkit as ev
+            import eventkit as ev
 
             def f(a, b):
                 print(a * b)
@@ -276,7 +244,7 @@ class Event:
         Start the asyncio event loop, run this event to completion and
         return all values as a list::
 
-            from ib_interface import eventkit as ev
+            import eventkit as ev
 
             ev.Timer(0.25, count=10).run()
             ->
@@ -299,7 +267,7 @@ class Event:
         """
         Form several events into a pipe::
 
-            from ib_interface import eventkit as ev
+            import eventkit as ev
 
             e1 = ev.Sequence('abcde')
             e2 = ev.Enumerate().map(lambda i, c: (i, i + ord(c)))
@@ -325,7 +293,7 @@ class Event:
         Fork this event into one or more target events.
         Square brackets can be used as a synonym::
 
-            from ib_interface import eventkit as ev
+            import eventkit as ev
 
             ev.Range(2, 5)[ev.Min, ev.Max, ev.Sum].zip()
             ->
@@ -1331,3 +1299,49 @@ class Event:
         End on any error from the source.
         """
         return EndOnError(self)
+
+
+# avoid circular import error
+# noqa: E402
+from ib_interface.eventkit.ops.aggregate import All, Any, Count, Deque, Ema
+from ib_interface.eventkit.ops.aggregate import List as ListOp
+from ib_interface.eventkit.ops.aggregate import Max, Mean, Min, Pairwise, Product, Reduce, Sum
+from ib_interface.eventkit.ops.array import (
+    Array,
+    ArrayAll,
+    ArrayAny,
+    ArrayMax,
+    ArrayMean,
+    ArrayMin,
+    ArrayProd,
+    ArrayStd,
+    ArraySum,
+)
+from ib_interface.eventkit.ops.combine import AddableJoinOp, Chain, Concat, Fork, Merge, Switch, Zip, Ziplatest
+from ib_interface.eventkit.ops.create import Aiterate, Marble, Range, Repeat, Sequence, Timer, Timerange, Wait
+from ib_interface.eventkit.ops.misc import EndOnError, Errors
+from ib_interface.eventkit.ops.op import Op
+from ib_interface.eventkit.ops.select import Changes, DropWhile, Filter, Last, Skip, Take, TakeUntil, TakeWhile, Unique
+from ib_interface.eventkit.ops.timing import Debounce, Delay, Sample, Throttle, Timeout
+from ib_interface.eventkit.ops.transform import (
+    Chainmap,
+    Chunk,
+    ChunkWith,
+    Concatmap,
+    Constant,
+    Copy,
+    Deepcopy,
+    Emap,
+    Enumerate,
+    Iterate,
+    Map,
+    Mergemap,
+    Pack,
+    Partial,
+    PartialRight,
+    Pluck,
+    Previous,
+    Star,
+    Switchmap,
+    Timestamp,
+)

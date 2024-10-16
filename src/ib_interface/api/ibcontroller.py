@@ -21,10 +21,9 @@ from contextlib import suppress
 from dataclasses import dataclass
 from typing import ClassVar
 
-import api.util as util
-from api.contract import Contract, Forex
-from api.ib import IB
-
+import ib_interface.api.util as util
+from ib_interface.api.contract import Contract, Forex
+from ib_interface.api.ib import IB
 from ib_interface.eventkit import Event
 
 
