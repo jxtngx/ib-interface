@@ -18,7 +18,7 @@ import datetime as dt
 from dataclasses import dataclass, field
 from typing import List, NamedTuple, Optional
 
-import api.util as util
+import ib_interface.api.util as util
 
 
 @dataclass

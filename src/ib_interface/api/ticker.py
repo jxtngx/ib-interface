@@ -18,8 +18,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar, List, Optional, Union
 
-from api.contract import Contract
-from api.objects import (
+from ib_interface.api.contract import Contract
+from ib_interface.api.objects import (
     Dividends,
     DOMLevel,
     FundamentalRatios,
@@ -30,8 +30,7 @@ from api.objects import (
     TickByTickMidPoint,
     TickData,
 )
-from api.util import dataclassRepr, isNan
-
+from ib_interface.api.util import dataclassRepr, isNan
 from ib_interface.eventkit import Event, Op
 
 nan = float("nan")

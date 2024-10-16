@@ -17,8 +17,6 @@
 import dataclasses
 import sys
 
-import ib_interface.eventkit as eventkit  # noqa: F401
-import ib_interface.nest_asyncio as nest_asyncio  # noqa: F401
 from ib_interface.api import util
 from ib_interface.api.client import Client
 from ib_interface.api.contract import (
@@ -116,9 +114,9 @@ from ib_interface.api.order import (
     VolumeCondition,
 )
 from ib_interface.api.ticker import Ticker
-from ib_interface.api.version import __version__, __version_info__
 from ib_interface.api.wrapper import RequestError, Wrapper
-from ib_interface.eventkit import Event
+from ib_interface.eventkit.event import Event
+from ib_interface.version import __version__, __version_info__
 
 __all__ = [
     "Event",

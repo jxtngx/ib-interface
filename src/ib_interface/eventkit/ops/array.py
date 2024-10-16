@@ -16,7 +16,7 @@ from collections import deque
 
 import numpy as np
 
-from ib_interface.eventkit.ops import Op
+from ib_interface.eventkit.ops.op import Op
 from ib_interface.eventkit.util import NO_VALUE
 
 
