@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Goheen
+    given-names: Justin
+  - name: "Justin R. Goheen"
+title: "IB Interface"
+version: 0.1
+date-released: 2022-09-01
+license: "Apache-2.0"
+repository-code: "https://github.com/JustinGoheen/ib_interface"
+keywords:
+  - machine learning
+  - deep learning
+  - artificial intelligence
+  - quantitative finance
+  - quantitative trading
