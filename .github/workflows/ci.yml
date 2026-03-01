@@ -1,17 +1,20 @@
 name: run coverage
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 jobs:
   run:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/checkout@v6
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.11
+          python-version: 3.12
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install .[dev]
       - name: Run tests and collect coverage
         run: |
           coverage run -m pytest
