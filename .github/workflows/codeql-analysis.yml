@@ -12,8 +12,12 @@
 name: "CodeQL"
 
 on:
+  push:
+    branches: [ main ]
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
+  schedule:
+    - cron: '24 7 * * 1'
 
 jobs:
   analyze:
