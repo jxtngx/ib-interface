@@ -1,6 +1,6 @@
 ---
 name: Sprint 1 Modernization
-overview: 4-week sprint to modernize ib-interface with Protobuf support, updated data models, and full test coverage. Tasks are broken into small tickets (~1-2 day effort each) with explicit dependencies and git conventions.
+overview: 4-week sprint to modernize ib-interface with Protobuf support, updated data models, OpenTelemetry observability, and full test coverage. Tasks are broken into small tickets (~1-2 day effort each) with explicit dependencies and git conventions.
 todos:
   - id: sprint-plan-approval
     content: Get user approval on sprint plan
@@ -16,6 +16,9 @@ todos:
     status: pending
   - id: chief-arch-plan
     content: Create Chief Architect task plan with DOC-* and review tickets
+    status: pending
+  - id: observability-dev-plan
+    content: Create Observability Engineer task plan with OBS-* tickets
     status: pending
 isProject: false
 ---
@@ -80,7 +83,26 @@ graph LR
 | API-008 | Add FundAssetType and FundDistributionPolicyIndicator enums             | API Dev | API-007    |
 
 
-### Phase 4: Decoder Updates (Week 2-3)
+### Phase 4: Observability Foundation (Week 2)
+
+```mermaid
+graph LR
+    OBS1[OBS-001] --> OBS2[OBS-002]
+    OBS2 --> OBS3[OBS-003]
+    PROTO12[PROTO-012] --> OBS3
+```
+
+
+
+
+| Ticket  | Description                                      | Owner             | Depends On         |
+| ------- | ------------------------------------------------ | ----------------- | ------------------ |
+| OBS-001 | Add OpenTelemetry dependencies to pyproject.toml | Observability Eng | -                  |
+| OBS-002 | Create telemetry.py with OTel logging bridge     | Observability Eng | OBS-001            |
+| OBS-003 | Add protocol type logging to Decoder.interpret() | Observability Eng | OBS-002, PROTO-012 |
+
+
+### Phase 5: Decoder Updates (Week 2-3)
 
 
 | Ticket    | Description                               | Owner        | Depends On           |
@@ -93,7 +115,7 @@ graph LR
 | PROTO-016 | Add _handle_config_response_proto handler | Protocol Dev | PROTO-012            |
 
 
-### Phase 5: Client Updates (Week 3)
+### Phase 6: Client Updates (Week 3)
 
 
 | Ticket  | Description                             | Owner   | Depends On         |
@@ -106,7 +128,7 @@ graph LR
 | API-014 | Add _placeOrderProtobuf() method        | API Dev | API-013, PROTO-008 |
 
 
-### Phase 6: Wrapper Updates (Week 3)
+### Phase 7: Wrapper Updates (Week 3)
 
 
 | Ticket  | Description                                     | Owner   | Depends On |
@@ -118,7 +140,7 @@ graph LR
 | API-019 | Update error() callback signature for errorTime | API Dev | -          |
 
 
-### Phase 7: IB Facade Updates (Week 3)
+### Phase 8: IB Facade Updates (Week 3)
 
 
 | Ticket  | Description                               | Owner   | Depends On       |
@@ -129,7 +151,17 @@ graph LR
 | API-023 | Implement updateConfig() blocking wrapper | API Dev | API-022          |
 
 
-### Phase 8: Testing (Week 3-4)
+### Phase 9: Key Event Instrumentation (Week 3)
+
+
+| Ticket  | Description                                           | Owner             | Depends On       |
+| ------- | ----------------------------------------------------- | ----------------- | ---------------- |
+| OBS-004 | Add connection lifecycle logging (connect/disconnect) | Observability Eng | OBS-002          |
+| OBS-005 | Add error event logging with severity and context     | Observability Eng | OBS-002          |
+| OBS-006 | Add order execution logging (place, status, fill)     | Observability Eng | OBS-002, API-014 |
+
+
+### Phase 10: Testing (Week 3-4)
 
 
 | Ticket   | Description                                      | Owner    | Depends On               |
@@ -147,16 +179,18 @@ graph LR
 | TEST-011 | Integration test for dual-protocol decoder       | Test Dev | PROTO-013 thru PROTO-016 |
 
 
-### Phase 9: Documentation (Week 4)
+### Phase 11: Documentation (Week 4)
 
 
-| Ticket  | Description                                    | Owner           | Depends On           |
-| ------- | ---------------------------------------------- | --------------- | -------------------- |
-| DOC-001 | Update pyproject.toml with protobuf dependency | Chief Architect | PROTO-001            |
-| DOC-002 | Document new Order attributes in docstrings    | API Dev         | API-002 thru API-005 |
-| DOC-003 | Document new ContractDetails attributes        | API Dev         | API-006 thru API-008 |
-| DOC-004 | Document Config API usage                      | API Dev         | API-020 thru API-023 |
-| DOC-005 | Update README with migration notes             | Chief Architect | All                  |
+| Ticket  | Description                                    | Owner             | Depends On           |
+| ------- | ---------------------------------------------- | ----------------- | -------------------- |
+| DOC-001 | Update pyproject.toml with protobuf dependency | Chief Architect   | PROTO-001            |
+| DOC-002 | Document new Order attributes in docstrings    | API Dev           | API-002 thru API-005 |
+| DOC-003 | Document new ContractDetails attributes        | API Dev           | API-006 thru API-008 |
+| DOC-004 | Document Config API usage                      | API Dev           | API-020 thru API-023 |
+| DOC-005 | Update README with migration notes             | Chief Architect   | All                  |
+| OBS-007 | Document SigNoz setup and dashboard config     | Observability Eng | OBS-003 thru OBS-006 |
+| OBS-008 | Document alerting rules configuration          | Observability Eng | OBS-007              |
 
 
 ---
@@ -169,6 +203,7 @@ All commits must reference the ticket number:
 git commit -m "[PROTO-001] Create protobuf module structure"
 git commit -m "[API-002] Add customerAccount and professionalCustomer to Order"
 git commit -m "[TEST-005] Add unit tests for order_from_proto()"
+git commit -m "[OBS-003] Add protocol type logging to Decoder.interpret()"
 ```
 
 ---
@@ -186,27 +221,37 @@ graph TD
         P5 --> P6[PROTO-006]
     end
     
-    subgraph week2 [Week 2: Models and Converter]
+    subgraph week2 [Week 2: Models, Converter, OBS]
         P6 --> P7[PROTO-007]
         P6 --> P8[PROTO-008]
         P6 --> P9[PROTO-009]
         A1[API-001] --> A2[API-002]
         A1 --> A3[API-003]
         A1 --> A4[API-004]
+        O1[OBS-001] --> O2[OBS-002]
     end
     
-    subgraph week3 [Week 3: Integration]
+    subgraph week3 [Week 3: Integration with Observability]
         P4 --> P11[PROTO-011]
+        P11 --> P12[PROTO-012]
+        P12 --> O3[OBS-003]
+        O2 --> O3
+        O2 --> O4[OBS-004]
+        O2 --> O5[OBS-005]
         P7 --> P13[PROTO-013]
         A2 --> A10[API-010]
         A10 --> A11[API-011]
         A11 --> A20[API-020]
+        A14[API-014] --> O6[OBS-006]
     end
     
-    subgraph week4 [Week 4: Testing]
+    subgraph week4 [Week 4: Testing and Docs]
         P2 --> T2[TEST-002]
         P7 --> T5[TEST-005]
         A20 --> T10[TEST-010]
+        O3 --> T11[TEST-011]
+        O6 --> O7[OBS-007]
+        O7 --> O8[OBS-008]
     end
 ```
 
@@ -217,11 +262,11 @@ graph TD
 ## Review Checkpoints
 
 
-| Week          | Review Focus                       | Reviewer        |
-| ------------- | ---------------------------------- | --------------- |
-| End of Week 1 | Protobuf codec correctness         | Chief Architect |
-| End of Week 2 | Data model backwards compatibility | Chief Architect |
-| End of Week 3 | API integration                    | Chief Architect |
-| End of Week 4 | Full PR review                     | User            |
+| Week          | Review Focus                                | Reviewer        |
+| ------------- | ------------------------------------------- | --------------- |
+| End of Week 1 | Protobuf codec correctness                  | Chief Architect |
+| End of Week 2 | Data model + OTel foundation                | Chief Architect |
+| End of Week 3 | API integration + protocol type logging     | Chief Architect |
+| End of Week 4 | Full PR review + observability verification | User            |
 
 
