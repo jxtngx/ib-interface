@@ -13,19 +13,34 @@ jobs:
     if: >
       github.event_name == 'workflow_dispatch' ||
       github.event_name == 'pull_request' ||
-      (github.event_name == 'issue_comment' && 
+      (github.event_name == 'issue_comment' &&
        github.event.issue.pull_request &&
-       contains(github.event.comment.body, '@copilot'))
+       contains(github.event.comment.body, '@copilot') &&
+       (github.event.comment.author_association == 'MEMBER' ||
+        github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'COLLABORATOR'))
     runs-on: ubuntu-latest
     # Set the permissions to the lowest permissions possible needed for your steps.
     # Copilot will be given its own token for its operations.
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
 
     steps:
+      - name: Get PR head SHA for issue comments
+        if: github.event_name == 'issue_comment'
+        id: pr_head
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_number="${{ github.event.issue.number }}"
+          sha="$(gh api repos/${{ github.repository }}/pulls/${pr_number} --jq .head.sha)"
+          echo "sha=${sha}" >> "$GITHUB_OUTPUT"
+
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.pr_head.outputs.sha || github.sha }}
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
