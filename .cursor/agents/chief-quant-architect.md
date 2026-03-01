@@ -30,6 +30,9 @@ graph TD
     end
     
     subgraph "Team"
+        SM[Scrum Master] -.Sprint Process.-> P
+        SM -.Sprint Process.-> A
+        SM -.Sprint Process.-> T
         P[Protocol Dev] --> Proto
         A[API Dev] --> Client
         A --> Wrapper
@@ -41,6 +44,7 @@ graph TD
 
 | Role | Owns |
 |------|------|
+| Scrum Master | Sprint process, velocity tracking, blocker removal |
 | Protocol Developer | codec.py, converter.py, messages/ |
 | API Developer | client.py, wrapper.py, ib.py, order.py, contract.py |
 | Test Developer | tests/, CI/CD |
