@@ -33,10 +33,12 @@ graph TD
         SM[Scrum Master] -.Sprint Process.-> P
         SM -.Sprint Process.-> A
         SM -.Sprint Process.-> T
+        SM -.Sprint Process.-> O
         P[Protocol Dev] --> Proto
         A[API Dev] --> Client
         A --> Wrapper
         T[Test Dev] --> Tests[tests/]
+        O[Observability Eng] --> Telemetry[telemetry.py]
     end
 ```
 
@@ -48,6 +50,7 @@ graph TD
 | Protocol Developer | codec.py, converter.py, messages/ |
 | API Developer | client.py, wrapper.py, ib.py, order.py, contract.py |
 | Test Developer | tests/, CI/CD |
+| Observability Engineer | telemetry.py, SigNoz dashboards, alerts |
 
 ## Authority
 
