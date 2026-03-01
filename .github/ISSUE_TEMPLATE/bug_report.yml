@@ -1,0 +1,120 @@
+name: Bug Report
+description: Report a bug or broken feature
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Before You Submit
+        
+        Please read the [Support Model](https://github.com/jxtngx/ib-interface#support-model) section of the README.
+        
+        - This is an open-source project, not a product
+        - Issues may not be addressed immediately or at all
+        - No guaranteed response times or SLAs
+        
+        ### Expected Issues
+        
+        This project is in active development with breaking changes. Many features may be broken due to outdated ib-insync implementations. Please verify this is a legitimate bug and not a known limitation.
+        
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+      description: What is actually happening?
+      placeholder: Describe the bug or broken feature
+    validations:
+      required: true
+      
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: Describe what you expected to happen
+    validations:
+      required: true
+      
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal reproduction steps
+      placeholder: |
+        1. Connect to TWS/Gateway with...
+        2. Call method...
+        3. Observe error...
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+      
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Minimal Code Sample
+      description: Provide a minimal, self-contained code example that reproduces the issue
+      render: python
+      placeholder: |
+        from ib_interface import IB
+        
+        ib = IB()
+        # minimal reproduction code
+    validations:
+      required: true
+      
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Your environment details
+      placeholder: |
+        - ib-interface version: 
+        - Python version: 
+        - TWS/Gateway version: 
+        - Operating System: 
+      value: |
+        - ib-interface version: 
+        - Python version: 
+        - TWS/Gateway version: 
+        - Operating System: 
+    validations:
+      required: true
+      
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output
+      description: Full error message or traceback
+      render: shell
+      placeholder: Paste the complete error message or stack trace
+    validations:
+      required: false
+      
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: |
+        - Does this work with the original ib-insync?
+        - Is this documented in project plans?
+        - Any workarounds you've tried?
+    validations:
+      required: false
+      
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify you've completed these steps
+      options:
+        - label: I have checked the project plans in `.cursor/plans/` to see if this is a known issue
+          required: true
+        - label: I have verified this occurs with a compatible TWS/Gateway version
+          required: true
+        - label: I understand this issue may not be addressed immediately or at all
+          required: true

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Sponsorship Inquiry
+    url: https://github.com/jxtngx/ib-interface/discussions
+    about: Inquire about sponsoring the project to prioritize features
+  - name: General Discussion
+    url: https://github.com/jxtngx/ib-interface/discussions
+    about: Ask questions or discuss the project
