@@ -47,40 +47,40 @@ graph LR
 
 
 
-| Ticket    | Description                                   | Owner        | Depends On           |
-| --------- | --------------------------------------------- | ------------ | -------------------- |
-| PROTO-001 | Create protobuf module structure              | Protocol Dev | -                    |
-| PROTO-002 | Implement ProtobufCodec.encode()              | Protocol Dev | PROTO-001            |
-| PROTO-003 | Implement ProtobufCodec.decode()              | Protocol Dev | PROTO-001            |
-| PROTO-004 | Implement ProtobufCodec.is_protobuf_message() | Protocol Dev | PROTO-002, PROTO-003 |
-| PROTO-005 | Copy and reorganize protobuf messages         | Protocol Dev | PROTO-001            |
+| Ticket    | Description                                   | Owner        | Depends On           | Plan                                 |
+| --------- | --------------------------------------------- | ------------ | -------------------- | ------------------------------------ |
+| PROTO-001 | Create protobuf module structure              | Protocol Dev | -                    | proto-001_module_structure_fac33c9f  |
+| PROTO-002 | Implement ProtobufCodec.encode()              | Protocol Dev | PROTO-001            | proto-002_codec_encode_614da315      |
+| PROTO-003 | Implement ProtobufCodec.decode()              | Protocol Dev | PROTO-001            | proto-003_codec_decode_6b32a8be      |
+| PROTO-004 | Implement ProtobufCodec.is_protobuf_message() | Protocol Dev | PROTO-002, PROTO-003 | proto-004_message_detection_593c2f6e |
+| PROTO-005 | Copy and reorganize protobuf messages         | Protocol Dev | PROTO-001            | proto-005_copy_messages_d46c9214     |
 
 
 ### Phase 2: Converter Layer (Week 1-2)
 
 
-| Ticket    | Description                             | Owner        | Depends On |
-| --------- | --------------------------------------- | ------------ | ---------- |
-| PROTO-006 | Create ProtobufConverter class skeleton | Protocol Dev | PROTO-005  |
-| PROTO-007 | Implement order_from_proto()            | Protocol Dev | PROTO-006  |
-| PROTO-008 | Implement order_to_proto()              | Protocol Dev | PROTO-006  |
-| PROTO-009 | Implement contract_from_proto()         | Protocol Dev | PROTO-006  |
-| PROTO-010 | Implement bar_data_from_proto()         | Protocol Dev | PROTO-006  |
+| Ticket    | Description                             | Owner        | Depends On | Plan                                   |
+| --------- | --------------------------------------- | ------------ | ---------- | -------------------------------------- |
+| PROTO-006 | Create ProtobufConverter class skeleton | Protocol Dev | PROTO-005  | proto-006_converter_skeleton_cf882e16  |
+| PROTO-007 | Implement order_from_proto()            | Protocol Dev | PROTO-006  | proto-007_order_from_proto_b875af92    |
+| PROTO-008 | Implement order_to_proto()              | Protocol Dev | PROTO-006  | proto-008_order_to_proto_fb00b278      |
+| PROTO-009 | Implement contract_from_proto()         | Protocol Dev | PROTO-006  | proto-009_contract_from_proto_e4c29f80 |
+| PROTO-010 | Implement bar_data_from_proto()         | Protocol Dev | PROTO-006  | proto-010_bardata_from_proto_17f3fc06  |
 
 
 ### Phase 3: Data Model Updates (Week 2)
 
 
-| Ticket  | Description                                                             | Owner   | Depends On |
-| ------- | ----------------------------------------------------------------------- | ------- | ---------- |
-| API-001 | Update MaxClientVersion to 222                                          | API Dev | -          |
-| API-002 | Add Order regulatory attributes (customerAccount, professionalCustomer) | API Dev | API-001    |
-| API-003 | Add Order overnight attributes (includeOvernight)                       | API Dev | API-001    |
-| API-004 | Add Order attached order attributes (slOrderId, ptOrderId, etc.)        | API Dev | API-001    |
-| API-005 | Add Order post-only/auction attributes                                  | API Dev | API-001    |
-| API-006 | Add ContractDetails size precision fields                               | API Dev | -          |
-| API-007 | Add ContractDetails fund fields                                         | API Dev | -          |
-| API-008 | Add FundAssetType and FundDistributionPolicyIndicator enums             | API Dev | API-007    |
+| Ticket  | Description                                                             | Owner   | Depends On | Plan                                  |
+| ------- | ----------------------------------------------------------------------- | ------- | ---------- | ------------------------------------- |
+| API-001 | Update MaxClientVersion to 222                                          | API Dev | -          | api-001_version_update_1a091c2c       |
+| API-002 | Add Order regulatory attributes (customerAccount, professionalCustomer) | API Dev | API-001    | api-002_order_regulatory_069a8d6e     |
+| API-003 | Add Order overnight attributes (includeOvernight)                       | API Dev | API-001    | api-003_order_overnight_22620b5f      |
+| API-004 | Add Order attached order attributes (slOrderId, ptOrderId, etc.)        | API Dev | API-001    | api-004_order_attached_29d87707       |
+| API-005 | Add Order post-only/auction attributes                                  | API Dev | API-001    | api-005_order_post-only_a3e6eef5      |
+| API-006 | Add ContractDetails size precision fields                               | API Dev | -          | api-006_contractdetails_size_298b2ff9 |
+| API-007 | Add ContractDetails fund fields                                         | API Dev | -          | api-007_contractdetails_fund_c5b20d8b |
+| API-008 | Add FundAssetType and FundDistributionPolicyIndicator enums             | API Dev | API-007    | api-008_fund_enums_d8559486           |
 
 
 ### Phase 4: Observability Foundation (Week 2)
@@ -95,102 +95,102 @@ graph LR
 
 
 
-| Ticket  | Description                                      | Owner             | Depends On         |
-| ------- | ------------------------------------------------ | ----------------- | ------------------ |
-| OBS-001 | Add OpenTelemetry dependencies to pyproject.toml | Observability Eng | -                  |
-| OBS-002 | Create telemetry.py with OTel logging bridge     | Observability Eng | OBS-001            |
-| OBS-003 | Add protocol type logging to Decoder.interpret() | Observability Eng | OBS-002, PROTO-012 |
+| Ticket  | Description                                      | Owner             | Depends On         | Plan                                   |
+| ------- | ------------------------------------------------ | ----------------- | ------------------ | -------------------------------------- |
+| OBS-001 | Add OpenTelemetry dependencies to pyproject.toml | Observability Eng | -                  | obs-001_otel_dependencies_899dad42     |
+| OBS-002 | Create telemetry.py with OTel logging bridge     | Observability Eng | OBS-001            | obs-002_telemetry_module_f9949499      |
+| OBS-003 | Add protocol type logging to Decoder.interpret() | Observability Eng | OBS-002, PROTO-012 | obs-003_protocol_type_logging_036e4722 |
 
 
 ### Phase 5: Decoder Updates (Week 2-3)
 
 
-| Ticket    | Description                               | Owner        | Depends On           |
-| --------- | ----------------------------------------- | ------------ | -------------------- |
-| PROTO-011 | Add proto_handlers dict to Decoder        | Protocol Dev | PROTO-004            |
-| PROTO-012 | Implement _interpret_protobuf() routing   | Protocol Dev | PROTO-011            |
-| PROTO-013 | Add _handle_order_status_proto handler    | Protocol Dev | PROTO-012, PROTO-007 |
-| PROTO-014 | Add _handle_open_order_proto handler      | Protocol Dev | PROTO-012, PROTO-009 |
-| PROTO-015 | Add _handle_tick_price_proto handler      | Protocol Dev | PROTO-012            |
-| PROTO-016 | Add _handle_config_response_proto handler | Protocol Dev | PROTO-012            |
+| Ticket    | Description                               | Owner        | Depends On           | Plan                                       |
+| --------- | ----------------------------------------- | ------------ | -------------------- | ------------------------------------------ |
+| PROTO-011 | Add proto_handlers dict to Decoder        | Protocol Dev | PROTO-004            | proto-011_proto_handlers_dict_2b750de6     |
+| PROTO-012 | Implement _interpret_protobuf() routing   | Protocol Dev | PROTO-011            | proto-012_interpret_protobuf_cdb423d6      |
+| PROTO-013 | Add _handle_order_status_proto handler    | Protocol Dev | PROTO-012, PROTO-007 | proto-013_order_status_handler_bca745e2    |
+| PROTO-014 | Add _handle_open_order_proto handler      | Protocol Dev | PROTO-012, PROTO-009 | proto-014_open_order_handler_5dc9833c      |
+| PROTO-015 | Add _handle_tick_price_proto handler      | Protocol Dev | PROTO-012            | proto-015_tick_price_handler_8b92a24b      |
+| PROTO-016 | Add _handle_config_response_proto handler | Protocol Dev | PROTO-012            | proto-016_config_response_handler_6315ef02 |
 
 
 ### Phase 6: Client Updates (Week 3)
 
 
-| Ticket  | Description                             | Owner   | Depends On         |
-| ------- | --------------------------------------- | ------- | ------------------ |
-| API-009 | Add _supports_protobuf() method         | API Dev | API-001            |
-| API-010 | Add _send_protobuf() async method       | API Dev | API-009, PROTO-002 |
-| API-011 | Implement reqConfig() method            | API Dev | API-010            |
-| API-012 | Implement updateConfig() method         | API Dev | API-010            |
-| API-013 | Add _should_use_protobuf_order() method | API Dev | API-009            |
-| API-014 | Add _placeOrderProtobuf() method        | API Dev | API-013, PROTO-008 |
+| Ticket  | Description                             | Owner   | Depends On         | Plan |
+| ------- | --------------------------------------- | ------- | ------------------ | ---- |
+| API-009 | Add _supports_protobuf() method         | API Dev | API-001            | TBD  |
+| API-010 | Add _send_protobuf() async method       | API Dev | API-009, PROTO-002 | TBD  |
+| API-011 | Implement reqConfig() method            | API Dev | API-010            | TBD  |
+| API-012 | Implement updateConfig() method         | API Dev | API-010            | TBD  |
+| API-013 | Add _should_use_protobuf_order() method | API Dev | API-009            | TBD  |
+| API-014 | Add _placeOrderProtobuf() method        | API Dev | API-013, PROTO-008 | TBD  |
 
 
 ### Phase 7: Wrapper Updates (Week 3)
 
 
-| Ticket  | Description                                     | Owner   | Depends On |
-| ------- | ----------------------------------------------- | ------- | ---------- |
-| API-015 | Add configResponseEvent to Wrapper              | API Dev | -          |
-| API-016 | Implement configResponse() callback             | API Dev | API-015    |
-| API-017 | Add updateConfigResponseEvent                   | API Dev | -          |
-| API-018 | Implement updateConfigResponse() callback       | API Dev | API-017    |
-| API-019 | Update error() callback signature for errorTime | API Dev | -          |
+| Ticket  | Description                                     | Owner   | Depends On | Plan |
+| ------- | ----------------------------------------------- | ------- | ---------- | ---- |
+| API-015 | Add configResponseEvent to Wrapper              | API Dev | -          | TBD  |
+| API-016 | Implement configResponse() callback             | API Dev | API-015    | TBD  |
+| API-017 | Add updateConfigResponseEvent                   | API Dev | -          | TBD  |
+| API-018 | Implement updateConfigResponse() callback       | API Dev | API-017    | TBD  |
+| API-019 | Update error() callback signature for errorTime | API Dev | -          | TBD  |
 
 
 ### Phase 8: IB Facade Updates (Week 3)
 
 
-| Ticket  | Description                               | Owner   | Depends On       |
-| ------- | ----------------------------------------- | ------- | ---------------- |
-| API-020 | Implement getConfigAsync()                | API Dev | API-011, API-016 |
-| API-021 | Implement getConfig() blocking wrapper    | API Dev | API-020          |
-| API-022 | Implement updateConfigAsync()             | API Dev | API-012, API-018 |
-| API-023 | Implement updateConfig() blocking wrapper | API Dev | API-022          |
+| Ticket  | Description                               | Owner   | Depends On       | Plan |
+| ------- | ----------------------------------------- | ------- | ---------------- | ---- |
+| API-020 | Implement getConfigAsync()                | API Dev | API-011, API-016 | TBD  |
+| API-021 | Implement getConfig() blocking wrapper    | API Dev | API-020          | TBD  |
+| API-022 | Implement updateConfigAsync()             | API Dev | API-012, API-018 | TBD  |
+| API-023 | Implement updateConfig() blocking wrapper | API Dev | API-022          | TBD  |
 
 
 ### Phase 9: Key Event Instrumentation (Week 3)
 
 
-| Ticket  | Description                                           | Owner             | Depends On       |
-| ------- | ----------------------------------------------------- | ----------------- | ---------------- |
-| OBS-004 | Add connection lifecycle logging (connect/disconnect) | Observability Eng | OBS-002          |
-| OBS-005 | Add error event logging with severity and context     | Observability Eng | OBS-002          |
-| OBS-006 | Add order execution logging (place, status, fill)     | Observability Eng | OBS-002, API-014 |
+| Ticket  | Description                                           | Owner             | Depends On       | Plan |
+| ------- | ----------------------------------------------------- | ----------------- | ---------------- | ---- |
+| OBS-004 | Add connection lifecycle logging (connect/disconnect) | Observability Eng | OBS-002          | TBD  |
+| OBS-005 | Add error event logging with severity and context     | Observability Eng | OBS-002          | TBD  |
+| OBS-006 | Add order execution logging (place, status, fill)     | Observability Eng | OBS-002, API-014 | TBD  |
 
 
 ### Phase 10: Testing (Week 3-4)
 
 
-| Ticket   | Description                                      | Owner    | Depends On               |
-| -------- | ------------------------------------------------ | -------- | ------------------------ |
-| TEST-001 | Create conftest.py fixtures for protobuf testing | Test Dev | PROTO-005                |
-| TEST-002 | Unit tests for ProtobufCodec.encode()            | Test Dev | PROTO-002                |
-| TEST-003 | Unit tests for ProtobufCodec.decode()            | Test Dev | PROTO-003                |
-| TEST-004 | Unit tests for is_protobuf_message()             | Test Dev | PROTO-004                |
-| TEST-005 | Unit tests for order_from_proto()                | Test Dev | PROTO-007                |
-| TEST-006 | Unit tests for order_to_proto()                  | Test Dev | PROTO-008                |
-| TEST-007 | Unit tests for contract_from_proto()             | Test Dev | PROTO-009                |
-| TEST-008 | Unit tests for new Order attributes              | Test Dev | API-002 thru API-005     |
-| TEST-009 | Unit tests for new ContractDetails attributes    | Test Dev | API-006 thru API-008     |
-| TEST-010 | Integration test for Config API                  | Test Dev | API-020 thru API-023     |
-| TEST-011 | Integration test for dual-protocol decoder       | Test Dev | PROTO-013 thru PROTO-016 |
+| Ticket   | Description                                      | Owner    | Depends On               | Plan |
+| -------- | ------------------------------------------------ | -------- | ------------------------ | ---- |
+| TEST-001 | Create conftest.py fixtures for protobuf testing | Test Dev | PROTO-005                | TBD  |
+| TEST-002 | Unit tests for ProtobufCodec.encode()            | Test Dev | PROTO-002                | TBD  |
+| TEST-003 | Unit tests for ProtobufCodec.decode()            | Test Dev | PROTO-003                | TBD  |
+| TEST-004 | Unit tests for is_protobuf_message()             | Test Dev | PROTO-004                | TBD  |
+| TEST-005 | Unit tests for order_from_proto()                | Test Dev | PROTO-007                | TBD  |
+| TEST-006 | Unit tests for order_to_proto()                  | Test Dev | PROTO-008                | TBD  |
+| TEST-007 | Unit tests for contract_from_proto()             | Test Dev | PROTO-009                | TBD  |
+| TEST-008 | Unit tests for new Order attributes              | Test Dev | API-002 thru API-005     | TBD  |
+| TEST-009 | Unit tests for new ContractDetails attributes    | Test Dev | API-006 thru API-008     | TBD  |
+| TEST-010 | Integration test for Config API                  | Test Dev | API-020 thru API-023     | TBD  |
+| TEST-011 | Integration test for dual-protocol decoder       | Test Dev | PROTO-013 thru PROTO-016 | TBD  |
 
 
 ### Phase 11: Documentation (Week 4)
 
 
-| Ticket  | Description                                    | Owner             | Depends On           |
-| ------- | ---------------------------------------------- | ----------------- | -------------------- |
-| DOC-001 | Update pyproject.toml with protobuf dependency | Chief Architect   | PROTO-001            |
-| DOC-002 | Document new Order attributes in docstrings    | API Dev           | API-002 thru API-005 |
-| DOC-003 | Document new ContractDetails attributes        | API Dev           | API-006 thru API-008 |
-| DOC-004 | Document Config API usage                      | API Dev           | API-020 thru API-023 |
-| DOC-005 | Update README with migration notes             | Chief Architect   | All                  |
-| OBS-007 | Document SigNoz setup and dashboard config     | Observability Eng | OBS-003 thru OBS-006 |
-| OBS-008 | Document alerting rules configuration          | Observability Eng | OBS-007              |
+| Ticket  | Description                                    | Owner             | Depends On           | Plan |
+| ------- | ---------------------------------------------- | ----------------- | -------------------- | ---- |
+| DOC-001 | Update pyproject.toml with protobuf dependency | Chief Architect   | PROTO-001            | TBD  |
+| DOC-002 | Document new Order attributes in docstrings    | API Dev           | API-002 thru API-005 | TBD  |
+| DOC-003 | Document new ContractDetails attributes        | API Dev           | API-006 thru API-008 | TBD  |
+| DOC-004 | Document Config API usage                      | API Dev           | API-020 thru API-023 | TBD  |
+| DOC-005 | Update README with migration notes             | Chief Architect   | All                  | TBD  |
+| OBS-007 | Document SigNoz setup and dashboard config     | Observability Eng | OBS-003 thru OBS-006 | TBD  |
+| OBS-008 | Document alerting rules configuration          | Observability Eng | OBS-007              | TBD  |
 
 
 ---
