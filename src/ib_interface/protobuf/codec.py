@@ -20,10 +20,13 @@ communication while preserving ib-interface's asyncio architecture.
 """
 
 import struct
+from typing import Type, TypeVar
 
-from google.protobuf.message import Message
+from google.protobuf.message import DecodeError, Message
 
 PROTOBUF_MSG_ID = 0
+
+T = TypeVar("T", bound=Message)
 
 
 class ProtobufCodec:
@@ -54,3 +57,27 @@ class ProtobufCodec:
         payload = msg.SerializeToString()
         header = struct.pack(">IBH", len(payload) + 3, PROTOBUF_MSG_ID, msg_type_id)
         return header + payload
+
+    @staticmethod
+    def decode(data: bytes, msg_class: Type[T]) -> T:
+        """
+        Decode a Protobuf message received from TWS.
+
+        Args:
+            data: Raw protobuf bytes (after framing removed).
+            msg_class: The protobuf message class to decode into.
+
+        Returns:
+            Deserialized protobuf message of type T.
+
+        Raises:
+            DecodeError: If the data cannot be parsed as the given message type.
+        """
+        msg = msg_class()
+        try:
+            msg.ParseFromString(data)
+        except DecodeError:
+            raise
+        except Exception as e:
+            raise DecodeError(f"Failed to decode protobuf message: {e}") from e
+        return msg
