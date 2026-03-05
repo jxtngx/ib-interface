@@ -4,16 +4,16 @@ overview: Implement ProtobufCodec.is_protobuf_message() to detect protobuf vs le
 todos:
   - id: impl-detection
     content: Implement is_protobuf_message() method
-    status: pending
+    status: completed
   - id: add-docstring
     content: Document message ID 0 convention
-    status: pending
+    status: completed
   - id: update-exports
     content: Update protobuf/__init__.py exports
-    status: pending
+    status: completed
   - id: commit
     content: Git commit with [PROTO-004]
-    status: pending
+    status: completed
 isProject: false
 ---
 
