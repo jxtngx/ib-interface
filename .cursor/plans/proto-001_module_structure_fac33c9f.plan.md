@@ -4,25 +4,25 @@ overview: Create the protobuf module directory structure at src/ib_interface/pro
 todos:
   - id: create-dir
     content: Create src/ib_interface/protobuf/ directory
-    status: pending
+    status: completed
   - id: create-init
     content: Create __init__.py with exports
-    status: pending
+    status: completed
   - id: create-codec
     content: Create codec.py stub
-    status: pending
+    status: completed
   - id: create-converter
     content: Create converter.py stub
-    status: pending
+    status: completed
   - id: create-messages
     content: Create messages/ subpackage
-    status: pending
+    status: completed
   - id: verify-imports
     content: Verify imports work
-    status: pending
+    status: completed
   - id: commit
     content: Git commit with [PROTO-001]
-    status: pending
+    status: completed
 isProject: false
 ---
 

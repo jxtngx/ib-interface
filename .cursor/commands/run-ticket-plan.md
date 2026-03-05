@@ -1,6 +1,6 @@
 # Run Ticket Plan
 
-Execute the next available ticket's implementation plan with automated ticket selection, dependency validation, and git workflow.
+Select the next available ticket, validate dependencies, create feature branch, and direct the user to the ticket's plan file for implementation.
 
 ## Usage
 
@@ -9,6 +9,16 @@ Execute the next available ticket's implementation plan with automated ticket se
 ```
 
 No ticket ID required - the command automatically determines the next ticket to work on.
+
+## Purpose
+
+This command does NOT implement code. It:
+1. Selects the optimal next ticket using agent consultation
+2. Validates git state and dependencies
+3. Creates the feature branch
+4. Directs you to the ticket plan file to begin implementation
+
+**You implement from the ticket plan file directly.**
 
 ## Workflow
 
@@ -19,8 +29,8 @@ graph TD
     C --> D[Validate Git State]
     D --> E[Check Dependencies]
     E --> F[Create Feature Branch]
-    F --> G[Execute Plan]
-    G --> H[Ready for Implementation]
+    F --> G[Display Plan Path]
+    G --> H[User Implements]
     
     B --> B1[Scrum Master]
     B --> B2[Chief Quant Architect]
@@ -98,14 +108,16 @@ Create feature branch following convention:
 - Example: `feature/PROTO-002-codec-encode`
 - Branch from current main
 
-### 4. Plan Execution
+### 4. Display Plan Path
 
-Load and display ticket plan for implementation:
+Provide clear instruction to user:
 
-- Read ticket plan file from `.cursor/plans/`
-- Display implementation steps
-- Show file paths and test requirements
-- Provide context for developer
+- Display full path to ticket plan file
+- Highlight the plan file for the user to reference
+- Summarize key deliverables from plan
+- Confirm branch is ready for work
+
+**The user implements from the plan file - the command does NOT auto-implement.**
 
 ## Pre-flight Checks
 
@@ -216,14 +228,12 @@ After successful ticket selection and validation:
 
 1. Display selected ticket ID and rationale
 2. Show agent recommendations and context
-3. Display ticket plan contents
-4. Show files to modify from plan
-5. Show test files to create/update
-6. Create feature branch
-7. Provide implementation context
-8. Wait for developer to proceed with implementation
+3. Create feature branch
+4. Display ticket plan file path
+5. Summarize key deliverables
+6. User implements by referencing the plan file directly
 
-The command prepares the environment but does NOT auto-implement code.
+**IMPORTANT**: This command only prepares the environment. The user always implements from the ticket plan file (e.g., `@.cursor/plans/proto-001_module_structure_fac33c9f.plan.md`).
 
 ## Agent Coordination
 
@@ -273,14 +283,15 @@ PROTO-002: Implement ProtobufCodec.encode()
 Creating branch: feature/PROTO-002-codec-encode
 Branch created successfully
 
-[IMPLEMENTATION PLAN]
-Plan file: .cursor/plans/proto-002_codec_encode_614da315.plan.md
+[READY FOR IMPLEMENTATION]
+Plan file: @.cursor/plans/proto-002_codec_encode_614da315.plan.md
 
-Files to modify:
-- src/ib_interface/protocol/codec.py
+Use the plan file above to implement this ticket.
 
-Tests to create:
-- tests/test_codec_encode.py
+Key deliverables:
+- Implement ProtobufCodec.encode() method
+- Add type hints and docstrings
+- Handle encoding errors gracefully
 
-Ready to implement. Proceed with plan.
+The feature branch is ready. Begin implementation from the plan file.
 ```
