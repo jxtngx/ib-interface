@@ -22,7 +22,7 @@ todos:
     status: completed
   - id: commit
     content: Git commit with [PROTO-001]
-    status: pending
+    status: completed
 isProject: false
 ---
 
