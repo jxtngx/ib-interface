@@ -4,19 +4,19 @@ overview: Implement ProtobufCodec.decode() static method that deserializes proto
 todos:
   - id: add-type-import
     content: Add Type import from typing
-    status: pending
+    status: completed
   - id: add-typevar
     content: Define T = TypeVar('T', bound=Message)
-    status: pending
+    status: completed
   - id: impl-decode
     content: Implement decode() static method
-    status: pending
+    status: completed
   - id: error-handling
     content: Handle ParseFromString errors
-    status: pending
+    status: completed
   - id: commit
     content: Git commit with [PROTO-003]
-    status: pending
+    status: completed
 isProject: false
 ---
 
