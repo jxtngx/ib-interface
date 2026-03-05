@@ -4,19 +4,19 @@ overview: Implement ProtobufCodec.encode() static method that frames protobuf me
 todos:
   - id: add-imports
     content: Add struct, TypeVar, Message imports
-    status: pending
+    status: completed
   - id: add-constant
     content: Define PROTOBUF_MSG_ID = 0
-    status: pending
+    status: completed
   - id: create-class
     content: Create ProtobufCodec class with docstring
-    status: pending
+    status: completed
   - id: impl-encode
     content: Implement encode() static method
-    status: pending
+    status: completed
   - id: commit
     content: Git commit with [PROTO-002]
-    status: pending
+    status: completed
 isProject: false
 ---
 

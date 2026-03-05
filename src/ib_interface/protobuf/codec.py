@@ -19,6 +19,12 @@ This module provides the core infrastructure for Protocol Buffer
 communication while preserving ib-interface's asyncio architecture.
 """
 
+import struct
+
+from google.protobuf.message import Message
+
+PROTOBUF_MSG_ID = 0
+
 
 class ProtobufCodec:
     """
@@ -31,4 +37,20 @@ class ProtobufCodec:
     - Serialized protobuf bytes
     """
 
-    pass
+    @staticmethod
+    def encode(msg: Message, msg_type_id: int) -> bytes:
+        """
+        Encode a Protobuf message for transmission to TWS.
+
+        Frame format: [length:4][msgId:1][typeId:2][payload:n]
+
+        Args:
+            msg: The protobuf message to encode.
+            msg_type_id: The TWS message type identifier.
+
+        Returns:
+            Bytes ready for socket transmission.
+        """
+        payload = msg.SerializeToString()
+        header = struct.pack(">IBH", len(payload) + 3, PROTOBUF_MSG_ID, msg_type_id)
+        return header + payload
