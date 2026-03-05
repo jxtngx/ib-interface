@@ -19,10 +19,11 @@ This module provides Protocol Buffer encoding/decoding and conversion
 utilities for the TWS API 10.35+ protobuf protocol.
 """
 
-from ib_interface.protobuf.codec import ProtobufCodec
+from ib_interface.protobuf.codec import PROTOBUF_MSG_ID, ProtobufCodec
 from ib_interface.protobuf.converter import ProtobufConverter
 
 __all__ = [
+    "PROTOBUF_MSG_ID",
     "ProtobufCodec",
     "ProtobufConverter",
 ]

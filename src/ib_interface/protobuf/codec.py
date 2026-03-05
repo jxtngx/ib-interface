@@ -81,3 +81,19 @@ class ProtobufCodec:
         except Exception as e:
             raise DecodeError(f"Failed to decode protobuf message: {e}") from e
         return msg
+
+    @staticmethod
+    def is_protobuf_message(fields: list) -> bool:
+        """
+        Detect if incoming fields represent a Protobuf message.
+
+        The TWS API uses message ID 0 to indicate protobuf format.
+        Legacy string-based messages use non-zero message IDs.
+
+        Args:
+            fields: List of decoded message fields from the wire.
+
+        Returns:
+            True if the message is protobuf format, False otherwise.
+        """
+        return len(fields) > 0 and fields[0] == "0"
