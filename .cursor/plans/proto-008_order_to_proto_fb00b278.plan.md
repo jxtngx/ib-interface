@@ -37,7 +37,7 @@ isProject: false
 from dataclasses import fields as dataclass_fields
 from decimal import Decimal
 from ib_interface.api.order import Order
-from ib_interface.protobuf.messages import OrderProto
+from ibapi.protobuf.Order_pb2 import Order as OrderProto
 
 @staticmethod
 def order_to_proto(order: Order) -> OrderProto:
@@ -60,9 +60,11 @@ def order_to_proto(order: Order) -> OrderProto:
 ## Tasks
 
 1. Add dataclass_fields import
-2. Implement order_to_proto() using reflection
-3. Handle Decimal to float conversion
-4. Skip None values
+2. Add Order import from ib_interface.api.order
+3. Add OrderProto import from ibapi.protobuf.Order_pb2
+4. Implement order_to_proto() using reflection
+5. Handle Decimal to float conversion
+6. Skip None values
 
 ---
 

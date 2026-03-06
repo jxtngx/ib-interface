@@ -37,7 +37,7 @@ isProject: false
 ## Implementation
 
 ```python
-from ib_interface.protobuf.messages import OrderStatusProto
+from ibapi.protobuf.OrderStatus_pb2 import OrderStatus as OrderStatusProto
 
 def _handle_order_status_proto(self, data: bytes):
     """Handle Protobuf OrderStatus message."""
@@ -63,7 +63,7 @@ def _handle_order_status_proto(self, data: bytes):
 
 ## Tasks
 
-1. Import OrderStatusProto from messages
+1. Import OrderStatusProto from ibapi.protobuf.OrderStatus_pb2
 2. Implement _handle_order_status_proto()
 3. Decode proto using ProtobufCodec.decode()
 4. Call wrapper.orderStatus() with extracted fields

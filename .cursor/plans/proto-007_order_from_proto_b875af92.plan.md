@@ -39,7 +39,7 @@ isProject: false
 ```python
 from decimal import Decimal
 from ib_interface.api.order import Order
-from ib_interface.protobuf.messages import OrderProto
+from ibapi.protobuf.Order_pb2 import Order as OrderProto
 
 @staticmethod
 def order_from_proto(proto: OrderProto) -> Order:
@@ -79,11 +79,12 @@ def order_from_proto(proto: OrderProto) -> Order:
 ## Tasks
 
 1. Add Decimal import
-2. Add OrderProto import from messages
-3. Implement order_from_proto() with HasField checks
-4. Handle core fields (orderId, action, totalQuantity, etc.)
-5. Handle extended fields (customerAccount, includeOvernight)
-6. Handle attached order fields (slOrderId, ptOrderId)
+2. Add Order import from ib_interface.api.order
+3. Add OrderProto import from ibapi.protobuf.Order_pb2
+4. Implement order_from_proto() with HasField checks
+5. Handle core fields (orderId, action, totalQuantity, etc.)
+6. Handle extended fields (customerAccount, includeOvernight)
+7. Handle attached order fields (slOrderId, ptOrderId)
 
 ---
 

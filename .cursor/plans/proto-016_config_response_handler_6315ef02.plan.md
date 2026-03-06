@@ -37,7 +37,7 @@ isProject: false
 ## Implementation
 
 ```python
-from ib_interface.protobuf.messages import ConfigResponseProto
+from ibapi.protobuf.ConfigResponse_pb2 import ConfigResponse as ConfigResponseProto
 
 def _handle_config_response_proto(self, data: bytes):
     """Handle Protobuf ConfigResponse message (NEW feature)."""
@@ -52,7 +52,7 @@ def _handle_config_response_proto(self, data: bytes):
 
 ## Tasks
 
-1. Import ConfigResponseProto from messages
+1. Import ConfigResponseProto from ibapi.protobuf.ConfigResponse_pb2
 2. Implement _handle_config_response_proto()
 3. Decode proto using ProtobufCodec.decode()
 4. Check wrapper has configResponse method

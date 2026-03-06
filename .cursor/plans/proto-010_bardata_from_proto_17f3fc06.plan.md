@@ -36,9 +36,10 @@ isProject: false
 ```python
 from decimal import Decimal
 from ib_interface.api.objects import BarData
+from ibapi.protobuf.HistoricalDataBar_pb2 import HistoricalDataBar
 
 @staticmethod
-def bar_data_from_proto(proto) -> BarData:
+def bar_data_from_proto(proto: HistoricalDataBar) -> BarData:
     """Convert Protobuf historical bar to ib-interface BarData."""
     return BarData(
         date=proto.time if proto.HasField('time') else "",
@@ -56,10 +57,11 @@ def bar_data_from_proto(proto) -> BarData:
 
 ## Tasks
 
-1. Add BarData import from objects
-2. Implement bar_data_from_proto()
-3. Handle volume as Decimal
-4. Map wap to average field
+1. Add BarData import from ib_interface.api.objects
+2. Add HistoricalDataBar import from ibapi.protobuf.HistoricalDataBar_pb2
+3. Implement bar_data_from_proto()
+4. Handle volume as Decimal
+5. Map wap to average field
 
 ---
 

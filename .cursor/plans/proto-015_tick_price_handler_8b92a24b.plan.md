@@ -37,7 +37,7 @@ isProject: false
 ## Implementation
 
 ```python
-from ib_interface.protobuf.messages import TickPriceProto
+from ibapi.protobuf.TickPrice_pb2 import TickPrice as TickPriceProto
 
 def _handle_tick_price_proto(self, data: bytes):
     """Handle Protobuf TickPrice message."""
@@ -56,7 +56,7 @@ def _handle_tick_price_proto(self, data: bytes):
 
 ## Tasks
 
-1. Import TickPriceProto from messages
+1. Import TickPriceProto from ibapi.protobuf.TickPrice_pb2
 2. Implement _handle_tick_price_proto()
 3. Decode proto using ProtobufCodec.decode()
 4. Call wrapper.priceSizeTick() with fields

@@ -35,7 +35,7 @@ isProject: false
 
 ```python
 from ib_interface.api.contract import Contract
-from ib_interface.protobuf.messages import ContractProto
+from ibapi.protobuf.Contract_pb2 import Contract as ContractProto
 
 @staticmethod
 def contract_from_proto(proto: ContractProto) -> Contract:
@@ -67,9 +67,10 @@ def contract_from_proto(proto: ContractProto) -> Contract:
 
 ## Tasks
 
-1. Add Contract and ContractProto imports
-2. Implement contract_from_proto() with HasField checks
-3. Handle all Contract fields
+1. Add Contract import from ib_interface.api.contract
+2. Add ContractProto import from ibapi.protobuf.Contract_pb2
+3. Implement contract_from_proto() with HasField checks
+4. Handle all Contract fields
 
 ---
 

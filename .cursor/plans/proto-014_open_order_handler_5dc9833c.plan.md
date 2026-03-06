@@ -40,7 +40,7 @@ isProject: false
 ## Implementation
 
 ```python
-from ib_interface.protobuf.messages import OpenOrderProto
+from ibapi.protobuf.OpenOrder_pb2 import OpenOrder as OpenOrderProto
 from ib_interface.protobuf.converter import ProtobufConverter
 from ib_interface.api.order import OrderState
 
@@ -68,7 +68,7 @@ def _handle_open_order_proto(self, data: bytes):
 
 ## Tasks
 
-1. Import OpenOrderProto from messages
+1. Import OpenOrderProto from ibapi.protobuf.OpenOrder_pb2
 2. Import ProtobufConverter
 3. Add self.converter = ProtobufConverter() in **init**
 4. Implement _handle_open_order_proto()
