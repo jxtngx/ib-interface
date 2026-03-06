@@ -146,3 +146,4 @@ ibc/
 
 # official ib api
 pythonclient/
+ibapi
