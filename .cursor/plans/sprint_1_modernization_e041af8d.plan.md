@@ -53,7 +53,7 @@ graph LR
 | PROTO-002 | Implement ProtobufCodec.encode()              | Protocol Dev | PROTO-001            | proto-002_codec_encode_614da315      |
 | PROTO-003 | Implement ProtobufCodec.decode()              | Protocol Dev | PROTO-001            | proto-003_codec_decode_6b32a8be      |
 | PROTO-004 | Implement ProtobufCodec.is_protobuf_message() | Protocol Dev | PROTO-002, PROTO-003 | proto-004_message_detection_593c2f6e |
-| PROTO-005 | Copy and reorganize protobuf messages         | Protocol Dev | PROTO-001            | proto-005_copy_messages_d46c9214     |
+| PROTO-005 | Setup ibapi local installation and imports    | Protocol Dev | PROTO-001            | proto-005_copy_messages_d46c9214     |
 
 
 ### Phase 2: Converter Layer (Week 1-2)
