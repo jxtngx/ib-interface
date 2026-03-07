@@ -22,12 +22,46 @@ else
     STATUS_TEXT="uncommitted changes"
 fi
 
-# Capture completed tickets
-COMPLETED_TICKETS=$(git log --all --oneline --grep='\[PROTO-' --grep='\[API-' --grep='\[TEST-' --grep='\[OBS-' --grep='\[DOC-' -n 50 2>/dev/null | cat)
-if [ -n "$COMPLETED_TICKETS" ]; then
-    COMPLETED_COUNT=$(echo "$COMPLETED_TICKETS" | wc -l | tr -d ' ')
-else
-    COMPLETED_COUNT="0"
+# Parse frontmatter tasks from sprint plan for completion tracking
+COMPLETED_TASKS=""
+PENDING_TASKS=""
+COMPLETED_COUNT="0"
+PENDING_COUNT="0"
+
+if [ -f "$SPRINT_PLAN" ]; then
+    # Extract frontmatter todos section (between 'todos:' and next top-level key)
+    FRONTMATTER_TODOS=$(awk '/^todos:/,/^[a-z_]+:/ {
+        if ($0 !~ /^[a-z_]+:/ || $0 ~ /^todos:/) print
+    }' "$SPRINT_PLAN")
+    
+    # Parse completed tasks
+    COMPLETED_TASKS=$(echo "$FRONTMATTER_TODOS" | awk '
+        /content:/ { content=$0; sub(/.*content: */, "", content); getline; 
+        if ($0 ~ /status: *completed/) print content }
+    ')
+    
+    # Parse pending tasks
+    PENDING_TASKS=$(echo "$FRONTMATTER_TODOS" | awk '
+        /content:/ { content=$0; sub(/.*content: */, "", content); getline; 
+        if ($0 ~ /status: *pending/) print content }
+    ')
+    
+    # Count tasks (grep for ticket patterns)
+    if [ -n "$COMPLETED_TASKS" ]; then
+        COMPLETED_COUNT=$(echo "$COMPLETED_TASKS" | grep -c 'PROTO\|API\|TEST\|OBS\|DOC' || echo "0")
+    fi
+    
+    if [ -n "$PENDING_TASKS" ]; then
+        PENDING_COUNT=$(echo "$PENDING_TASKS" | grep -c 'PROTO\|API\|TEST\|OBS\|DOC' || echo "0")
+    fi
+fi
+
+# Fallback: If no frontmatter tasks found, use git log (legacy)
+if [ "$COMPLETED_COUNT" -eq 0 ]; then
+    GIT_COMPLETED=$(git log --all --oneline --grep='\[PROTO-' --grep='\[API-' --grep='\[TEST-' --grep='\[OBS-' --grep='\[DOC-' -n 50 2>/dev/null | cat)
+    if [ -n "$GIT_COMPLETED" ]; then
+        COMPLETED_COUNT=$(echo "$GIT_COMPLETED" | wc -l | tr -d ' ')
+    fi
 fi
 
 # Capture recent commits
@@ -51,8 +85,12 @@ if [ -f "$SPRINT_PLAN" ]; then
 fi
 
 # Calculate completion percentage
-if [ "$TOTAL_TICKETS" != "Unknown" ] && [ "$TOTAL_TICKETS" -gt 0 ] && [ "$COMPLETED_COUNT" -gt 0 ]; then
-    COMPLETION_PCT=$((COMPLETED_COUNT * 100 / TOTAL_TICKETS))
+if [ "$TOTAL_TICKETS" != "Unknown" ] && [ "$TOTAL_TICKETS" -gt 0 ]; then
+    if [ "$COMPLETED_COUNT" -gt 0 ]; then
+        COMPLETION_PCT=$((COMPLETED_COUNT * 100 / TOTAL_TICKETS))
+    else
+        COMPLETION_PCT="0"
+    fi
 else
     COMPLETION_PCT="0"
 fi
@@ -68,14 +106,36 @@ Generated: $TIMESTAMP
 **Branch**: $CURRENT_BRANCH
 **Status**: $STATUS_TEXT
 
-## Completed Tickets
+## Ticket Status Summary
+
+Total Tickets: $TOTAL_TICKETS
+Completed: $COMPLETED_COUNT
+Pending: $PENDING_COUNT
+Completion: $COMPLETION_PCT%
+
+## Completed Tickets (from Sprint Plan)
 
 EOF
 
-if [ -n "$COMPLETED_TICKETS" ]; then
-    echo "$COMPLETED_TICKETS" >> "$OUTPUT_FILE"
+if [ -n "$COMPLETED_TASKS" ] && [ "$COMPLETED_COUNT" -gt 0 ]; then
+    echo "$COMPLETED_TASKS" >> "$OUTPUT_FILE"
 else
-    echo "No completed tickets found." >> "$OUTPUT_FILE"
+    echo "No completed tickets found in sprint plan frontmatter." >> "$OUTPUT_FILE"
+fi
+
+cat >> "$OUTPUT_FILE" << EOF
+
+## Pending Tickets (from Sprint Plan)
+
+EOF
+
+if [ -n "$PENDING_TASKS" ] && [ "$PENDING_COUNT" -gt 0 ]; then
+    echo "$PENDING_TASKS" | head -20 >> "$OUTPUT_FILE"
+    if [ "$PENDING_COUNT" -gt 20 ]; then
+        echo "... and $((PENDING_COUNT - 20)) more pending tickets" >> "$OUTPUT_FILE"
+    fi
+else
+    echo "No pending tickets found in sprint plan frontmatter." >> "$OUTPUT_FILE"
 fi
 
 cat >> "$OUTPUT_FILE" << EOF
@@ -88,7 +148,7 @@ $RECENT_COMMITS
 
 $ALL_BRANCHES
 
-## Sprint Summary
+## Sprint Metadata
 
 Sprint: $SPRINT_NAME
 Total Tickets: $TOTAL_TICKETS
@@ -99,11 +159,29 @@ Completed: $COMPLETED_COUNT/$TOTAL_TICKETS ($COMPLETION_PCT%)
 
 ## Usage for Agents
 
-This file provides standardized git context for sprint planning decisions:
+This file provides standardized context for sprint planning decisions:
 
-- **Scrum Master**: Use "Completed Tickets" to assess velocity and identify next tickets
-- **Chief Quant Architect**: Use "Recent Commits" to understand technical context
-- Both agents should verify dependencies using the "Completed Tickets" section
+- **Completed Tickets**: Parsed from sprint plan frontmatter \`status: completed\` tasks
+- **Pending Tickets**: Parsed from sprint plan frontmatter \`status: pending\` tasks
+- **Recent Commits**: Git history for technical context
+- **Available Branches**: Current branch state
+
+### For Scrum Master
+
+Use "Completed Tickets" and "Pending Tickets" sections to:
+- Assess velocity and progress
+- Identify next tickets based on dependencies
+- Verify prerequisite tickets are completed
+
+### For Chief Quant Architect
+
+Use "Recent Commits" and "Available Branches" to:
+- Understand technical context
+- Verify dependency implementation details
+- Cross-reference frontmatter status with git history
+
+**Note**: Sprint plan frontmatter is the single source of truth for ticket status.
+Git commits provide technical validation and context only.
 
 This file is regenerated on each run of the run-ticket-plan command.
 EOF
@@ -112,4 +190,5 @@ echo "✓ Scrum context written to: $OUTPUT_FILE"
 echo "✓ Current branch: $CURRENT_BRANCH"
 echo "✓ Status: $STATUS_TEXT"
 echo "✓ Completed tickets: $COMPLETED_COUNT"
+echo "✓ Pending tickets: $PENDING_COUNT"
 echo "✓ Total tickets: $TOTAL_TICKETS ($COMPLETION_PCT% complete)"
