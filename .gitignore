@@ -147,3 +147,6 @@ ibc/
 # official ib api
 pythonclient/
 ibapi
+
+# Cursor state files
+.cursor/.github-state.json

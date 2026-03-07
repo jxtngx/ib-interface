@@ -1,0 +1,159 @@
+name: Cursor Plan
+description: Create a ticket for implementation from a cursor plan file
+title: "[TICKET-ID]: "
+labels: ["cursor-plan", "ticket"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Cursor Plan Template
+        
+        This template creates a GitHub issue that corresponds to a cursor plan file.
+        Use the ticket ID format: PROTO-XXX, API-XXX, TEST-XXX, OBS-XXX, or DOC-XXX
+        
+  - type: input
+    id: ticket-id
+    attributes:
+      label: Ticket ID
+      description: Unique ticket identifier from sprint plan
+      placeholder: "PROTO-001"
+    validations:
+      required: true
+      
+  - type: input
+    id: plan-file
+    attributes:
+      label: Plan File
+      description: Path to the cursor plan file for this ticket
+      placeholder: ".cursor/plans/proto-001_module_structure_fac33c9f.plan.md"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Sprint Phase
+      description: Which phase of the sprint does this ticket belong to?
+      options:
+        - "Phase 1: Protocol Foundation (Week 1)"
+        - "Phase 2: Converter Layer (Week 1-2)"
+        - "Phase 3: Data Model Updates (Week 2)"
+        - "Phase 4: Observability Foundation (Week 2)"
+        - "Phase 5: Decoder Updates (Week 2-3)"
+        - "Phase 6: Client Updates (Week 3)"
+        - "Phase 7: Wrapper Updates (Week 3)"
+        - "Phase 8: IB Facade Updates (Week 3)"
+        - "Phase 9: Key Event Instrumentation (Week 3)"
+        - "Phase 10: Testing (Week 3-4)"
+        - "Phase 11: Documentation (Week 4)"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: owner
+    attributes:
+      label: Owner
+      description: Which team member owns this ticket?
+      options:
+        - "Protocol Dev"
+        - "API Dev"
+        - "Test Dev"
+        - "Observability Eng"
+        - "Chief Architect"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of what this ticket implements
+      placeholder: "Implement ProtobufCodec.encode() method with proper error handling and type hints"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: List ticket IDs that must be completed before this ticket can start
+      placeholder: |
+        - PROTO-001
+        - API-001
+      value: |
+        - 
+    validations:
+      required: false
+      
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: Key deliverables from the plan file
+      placeholder: |
+        - [ ] Implement encode() method in codec.py
+        - [ ] Add type hints and docstrings
+        - [ ] Handle encoding errors gracefully
+        - [ ] Write unit tests
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Definition of Done
+      description: Specific criteria that indicate this ticket is complete
+      placeholder: |
+        - [ ] Code implements all functionality in plan
+        - [ ] All tests pass
+        - [ ] Linting and type checking pass
+        - [ ] PR merged to main
+        - [ ] Commit message follows [TICKET-ID] convention
+      value: |
+        - [ ] Code implements all functionality in plan
+        - [ ] All tests pass
+        - [ ] Linting and type checking pass
+        - [ ] PR merged to main
+        - [ ] Commit message follows [TICKET-ID] convention
+    validations:
+      required: true
+      
+  - type: textarea
+    id: technical-notes
+    attributes:
+      label: Technical Notes
+      description: Implementation details, constraints, or architectural considerations
+      placeholder: |
+        - Uses Google protobuf library
+        - Must preserve asyncio patterns
+        - Error handling should not break existing flow
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      description: Current status of this ticket
+      options:
+        - "Pending"
+        - "In Progress"
+        - "In Review"
+        - "Completed"
+        - "Blocked"
+      default: 0
+    validations:
+      required: true
+      
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers
+      description: What is blocking this ticket (if status is Blocked)?
+      placeholder: "Waiting for PROTO-001 to be merged"
+    validations:
+      required: false
