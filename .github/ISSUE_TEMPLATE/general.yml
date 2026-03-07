@@ -1,0 +1,41 @@
+name: User Story
+description: Simple user story for a feature or change
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## User Story
+        
+        As a [role], I want [feature] so that [benefit].
+        
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      description: Describe the feature as a user story
+      placeholder: |
+        As a [type of user],
+        I want [some goal or objective]
+        so that [some reason or benefit].
+      value: |
+        As a 
+        I want 
+        so that 
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Specific, testable conditions for completion
+      placeholder: |
+        - [ ] Given [context], when [action], then [outcome]
+        - [ ] 
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
