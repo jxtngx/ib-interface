@@ -13,6 +13,12 @@ For requesting new features or enhancements.
 ### 3. Cursor Plan (`cursor_plan.yml`)
 For creating tickets that correspond to cursor plan files.
 
+### 4. Sprint Epic (`sprint_template.yml`)
+For creating sprint epics to track tickets. Individual ticket issues link as sub-issues using "Part of #N".
+
+### 5. User Story (`user_story.yml`)
+Simple template for user stories: As a [role], I want [feature] so that [benefit].
+
 ## Cursor Plan Template
 
 The cursor plan template is designed to integrate with the cursor-based development workflow.

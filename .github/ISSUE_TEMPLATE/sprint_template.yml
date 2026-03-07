@@ -1,0 +1,70 @@
+name: Sprint Epic
+description: Create a sprint epic to track tickets
+title: "Epic: "
+labels: ["sprint-epic"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Sprint Epic Template
+        
+        Use this template to create a sprint epic. Individual ticket issues can be linked as sub-issues using "Part of #N" in their body.
+        
+  - type: input
+    id: sprint-name
+    attributes:
+      label: Sprint Name
+      description: Name of the sprint
+      placeholder: "Sprint 1 Modernization"
+    validations:
+      required: true
+      
+  - type: input
+    id: duration
+    attributes:
+      label: Duration
+      description: Sprint duration
+      placeholder: "4 weeks"
+    validations:
+      required: true
+      
+  - type: input
+    id: goal
+    attributes:
+      label: Goal
+      description: Primary sprint goal
+      placeholder: "Protobuf support, data model updates, observability"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: overview
+    attributes:
+      label: Overview
+      description: Brief description of what this sprint accomplishes
+      placeholder: |
+        4-week sprint to modernize ib-interface with Protobuf support, updated data models, OpenTelemetry observability, and full test coverage.
+    validations:
+      required: true
+      
+  - type: input
+    id: sprint-plan
+    attributes:
+      label: Sprint Plan File
+      description: Path to the cursor plan file (optional)
+      placeholder: ".cursor/plans/sprint_1_modernization_e041af8d.plan.md"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: tracked-tickets
+    attributes:
+      label: Tracked Tickets
+      description: List of ticket issues linked to this epic (or leave blank to add as tickets are created)
+      placeholder: |
+        Individual tickets will be linked below as they are created.
+        Use "Part of #N" in ticket issue bodies to link them.
+      value: |
+        This epic tracks all tickets in this sprint. Individual tickets will be linked below as they are created.
+    validations:
+      required: false
