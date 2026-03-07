@@ -24,13 +24,34 @@ Design Philosophy:
 - User-facing API never exposes Protobuf types
 """
 
+from ib_interface.api.contract import Contract
+from ib_interface.api.order import Order
+from ib_interface.api.objects import BarData
+
+from ibapi.protobuf.Order_pb2 import Order as OrderProto
+from ibapi.protobuf.Contract_pb2 import Contract as ContractProto
+from ibapi.protobuf.HistoricalDataBar_pb2 import HistoricalDataBar as BarProto
+
 
 class ProtobufConverter:
-    """
-    Bidirectional converter between Protobuf messages and dataclasses.
+    """Bidirectional converter between Protobuf and dataclasses."""
 
-    Provides methods to convert TWS API protobuf messages to ib-interface
-    dataclass objects and vice versa.
-    """
+    @staticmethod
+    def order_from_proto(proto: OrderProto) -> Order:
+        """Convert Protobuf Order to dataclass."""
+        raise NotImplementedError("PROTO-007")
 
-    pass
+    @staticmethod
+    def order_to_proto(order: Order) -> OrderProto:
+        """Convert dataclass Order to Protobuf."""
+        raise NotImplementedError("PROTO-008")
+
+    @staticmethod
+    def contract_from_proto(proto: ContractProto) -> Contract:
+        """Convert Protobuf Contract to dataclass."""
+        raise NotImplementedError("PROTO-009")
+
+    @staticmethod
+    def bar_data_from_proto(proto: BarProto) -> BarData:
+        """Convert Protobuf bar to dataclass."""
+        raise NotImplementedError("PROTO-010")
