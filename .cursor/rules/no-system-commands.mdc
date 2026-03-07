@@ -1,0 +1,48 @@
+---
+description: Prevent running file permission and system modification commands
+alwaysApply: true
+---
+
+# No System Modification Commands
+
+Do NOT run commands that modify file permissions or system settings. These require user confirmation.
+
+## Prohibited Commands
+
+NEVER use Shell tool to run:
+
+- `chmod` - Changes file permissions
+- `chown` - Changes file ownership
+- `chgrp` - Changes group ownership
+- `sudo` - Elevated privilege commands
+
+## Why
+
+- File permissions are user-controlled
+- Scripts should be created as regular files
+- User will handle permission changes if needed
+- Prevents accidental system modifications
+
+## What to Do Instead
+
+When creating scripts:
+
+1. Write the file normally
+2. Tell the user to run: `chmod +x <script-path>`
+3. Or user can execute with: `bash <script-path>`
+
+Example response:
+
+```
+I've created the script at .cursor/scripts/example.sh
+
+To make it executable, run:
+chmod +x .cursor/scripts/example.sh
+
+Or execute directly with:
+bash .cursor/scripts/example.sh
+```
+
+## Exceptions
+
+None - user always handles permissions.
