@@ -5,6 +5,10 @@
       {
         "command": ".cursor/hooks/block-system-commands.sh",
         "matcher": "chmod|chown|chgrp|sudo"
+      },
+      {
+        "command": ".cursor/hooks/enforce-git-standards.sh",
+        "matcher": "git.*--trailer"
       }
     ]
   }

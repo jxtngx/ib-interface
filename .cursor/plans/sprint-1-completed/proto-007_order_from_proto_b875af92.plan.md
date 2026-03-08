@@ -4,22 +4,22 @@ overview: Implement order_from_proto() method to convert Protobuf Order message 
 todos:
   - id: add-imports
     content: Add Decimal and OrderProto imports
-    status: pending
+    status: completed
   - id: impl-core
     content: Implement core field conversion
-    status: pending
+    status: completed
   - id: impl-extended
     content: Implement extended field conversion (v178+)
-    status: pending
+    status: completed
   - id: impl-attached
     content: Implement attached order fields (v218+)
-    status: pending
+    status: completed
   - id: commit
     content: Git commit with [PROTO-007]
-    status: pending
+    status: completed
   - id: update-sprint
     content: Update sprint_1_modernization_e041af8d.plan.md to mark PROTO-007 completed
-    status: pending
+    status: completed
 isProject: false
 ---
 
@@ -89,7 +89,7 @@ def order_from_proto(proto: OrderProto) -> Order:
 6. Handle extended fields (customerAccount, includeOvernight)
 7. Handle attached order fields (slOrderId, ptOrderId)
 8. Update sprint plan frontmatter in sprint_1_modernization_e041af8d.plan.md:
-   - Change `status: pending` to `status: completed` for proto-007 todo
+  - Change `status: pending` to `status: completed` for proto-007 todo
 
 ---
 
@@ -111,3 +111,4 @@ git commit -m "[PROTO-007] Implement order_from_proto()
 - Converts all core Order fields
 - Handles optional fields safely with HasField()
 - Returns valid Order dataclass
+
