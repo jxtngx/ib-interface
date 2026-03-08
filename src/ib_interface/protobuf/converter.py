@@ -24,6 +24,8 @@ Design Philosophy:
 - User-facing API never exposes Protobuf types
 """
 
+from decimal import Decimal
+
 from ib_interface.api.contract import Contract
 from ib_interface.api.order import Order
 from ib_interface.api.objects import BarData
@@ -38,8 +40,35 @@ class ProtobufConverter:
 
     @staticmethod
     def order_from_proto(proto: OrderProto) -> Order:
-        """Convert Protobuf Order to dataclass."""
-        raise NotImplementedError("PROTO-007")
+        """Convert Protobuf Order to ib-interface Order dataclass."""
+        order = Order()
+        
+        # Core fields
+        order.orderId = proto.orderId if proto.HasField('orderId') else 0
+        order.clientId = proto.clientId if proto.HasField('clientId') else 0
+        order.permId = proto.permId if proto.HasField('permId') else 0
+        order.action = proto.action if proto.HasField('action') else ""
+        order.totalQuantity = Decimal(str(proto.totalQuantity)) if proto.HasField('totalQuantity') else Decimal(0)
+        order.orderType = proto.orderType if proto.HasField('orderType') else ""
+        order.lmtPrice = proto.lmtPrice if proto.HasField('lmtPrice') else 0.0
+        order.auxPrice = proto.auxPrice if proto.HasField('auxPrice') else 0.0
+        order.tif = proto.tif if proto.HasField('tif') else ""
+        
+        # Extended fields (v178+)
+        if proto.HasField('customerAccount'):
+            order.customerAccount = proto.customerAccount
+        if proto.HasField('professionalCustomer'):
+            order.professionalCustomer = proto.professionalCustomer
+        if proto.HasField('includeOvernight'):
+            order.includeOvernight = proto.includeOvernight
+        
+        # Attached orders (v218+)
+        if proto.HasField('slOrderId'):
+            order.slOrderId = proto.slOrderId
+        if proto.HasField('ptOrderId'):
+            order.ptOrderId = proto.ptOrderId
+        
+        return order
 
     @staticmethod
     def order_to_proto(order: Order) -> OrderProto:

@@ -22,7 +22,7 @@ todos:
     status: completed
   - id: proto-007
     content: PROTO-007 - Implement order_from_proto()
-    status: pending
+    status: completed
   - id: proto-008
     content: PROTO-008 - Implement order_to_proto()
     status: pending

@@ -1,5 +1,0 @@
-- make sure I am on the main branch
-- pull from origin main
-- check sprint_1_modernization_e041af8d.plan.md for the last ticket worked
-    - ask me if that is the last ticket worked on or if I forgot to update the plan
-    - if it is the last ticket worked on, then tell me the next ticket to work on

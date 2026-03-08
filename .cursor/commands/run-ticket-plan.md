@@ -38,10 +38,13 @@ When user invokes this command, the agent should:
 5. If confirmed: find next pending ticket in sequence
 6. Display: "Next ticket: TICKET-ID"
 7. Display: "Plan file: @.cursor/plans/[ticket-plan-file].plan.md"
+8. If confirmed run: `git checkout -b {ticket-type}/{TICKET-ID-description`
 
-## User Manual Steps After
+## Collaborative Steps After Checkout
 
-1. Create feature branch: `git checkout -b proto/TICKET-ID-description`
-2. (Optional) Create GitHub issue: `bash .cursor/scripts/create-github-issue.sh TICKET-ID`
-3. Implement from ticket plan file
-4. Final step in ticket plan: Update sprint plan frontmatter to mark ticket completed
+1. Parse sprint plan for ticket issue link
+2. If no issue, create GitHub issue: `bash .cursor/scripts/create-github-issue.sh TICKET-ID`
+3. Give user the link to the plan file so user can implement from there
+4. DO NOT run any git commmand, continue to 5
+5. Final step in ticket plan: Move sprint plan to `.cursor/plans/sprint-1-completed/`
+6. DO NOT run any git commmand return to user with message that the ticket plan is complete
