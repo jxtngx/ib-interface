@@ -232,8 +232,8 @@ graph LR
 
 | Ticket    | GitHub | Completed | Description                             | Owner        | Depends On | Plan                                                                                                   |
 | --------- | ------ | --------- | --------------------------------------- | ------------ | ---------- | ------------------------------------------------------------------------------------------------------ |
-| PROTO-006 | #19    | No        | Create ProtobufConverter class skeleton | Protocol Dev | PROTO-005  | [proto-006_converter_skeleton_cf882e16](.cursor/plans/proto-006_converter_skeleton_cf882e16.plan.md)   |
-| PROTO-007 | #20    | No        | Implement order_from_proto()            | Protocol Dev | PROTO-006  | [proto-007_order_from_proto_b875af92](.cursor/plans/proto-007_order_from_proto_b875af92.plan.md)       |
+| PROTO-006 | #19    | Yes       | Create ProtobufConverter class skeleton | Protocol Dev | PROTO-005  | [proto-006_converter_skeleton_cf882e16](.cursor/plans/proto-006_converter_skeleton_cf882e16.plan.md)   |
+| PROTO-007 | #20    | Yes       | Implement order_from_proto()            | Protocol Dev | PROTO-006  | [proto-007_order_from_proto_b875af92](.cursor/plans/proto-007_order_from_proto_b875af92.plan.md)       |
 | PROTO-008 | #21    | No        | Implement order_to_proto()              | Protocol Dev | PROTO-006  | [proto-008_order_to_proto_fb00b278](.cursor/plans/proto-008_order_to_proto_fb00b278.plan.md)           |
 | PROTO-009 | #22    | No        | Implement contract_from_proto()         | Protocol Dev | PROTO-006  | [proto-009_contract_from_proto_e4c29f80](.cursor/plans/proto-009_contract_from_proto_e4c29f80.plan.md) |
 | PROTO-010 | #23    | No        | Implement bar_data_from_proto()         | Protocol Dev | PROTO-006  | [proto-010_bardata_from_proto_17f3fc06](.cursor/plans/proto-010_bardata_from_proto_17f3fc06.plan.md)   |

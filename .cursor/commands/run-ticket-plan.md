@@ -38,13 +38,16 @@ When user invokes this command, the agent should:
 5. If confirmed: find next pending ticket in sequence
 6. Display: "Next ticket: TICKET-ID"
 7. Display: "Plan file: @.cursor/plans/[ticket-plan-file].plan.md"
-8. If confirmed run: `git checkout -b {ticket-type}/{TICKET-ID-description`
+8. Get the ticket type from the ticket plan file (proto, api, test, obs, doc)
+9. Ask user with AskQuestion tool to run: `git checkout -b {ticket-type}/{TICKET-ID-description`
 
 ## Collaborative Steps After Checkout
 
 1. Parse sprint plan for ticket issue link
 2. If no issue, create GitHub issue: `bash .cursor/scripts/create-github-issue.sh TICKET-ID`
-3. Give user the link to the plan file so user can implement from there
+3. With SwitchMode tool switch to Plan Mode
+4. While in plan mode display a link to the ticket plan file for the user to implement from there
 4. DO NOT run any git commmand, continue to 5
-5. Final step in ticket plan: Move sprint plan to `.cursor/plans/sprint-1-completed/`
+5. Move sprint plan to `.cursor/plans/sprint-1-completed/`
 6. DO NOT run any git commmand return to user with message that the ticket plan is complete
+7. Final step in ticket plan: Update sprint plan frontmatter to mark ticket completed in the to-dos list and the ticket table
