@@ -17,6 +17,9 @@ todos:
   - id: commit
     content: Git commit with [OBS-002]
     status: pending
+  - id: update-sprint
+    content: Update sprint_1_modernization_e041af8d.plan.md to mark OBS-002 completed
+    status: pending
 isProject: false
 ---
 

@@ -17,6 +17,9 @@ todos:
   - id: commit
     content: Git commit with [PROTO-007]
     status: pending
+  - id: update-sprint
+    content: Update sprint_1_modernization_e041af8d.plan.md to mark PROTO-007 completed
+    status: pending
 isProject: false
 ---
 
@@ -85,6 +88,8 @@ def order_from_proto(proto: OrderProto) -> Order:
 5. Handle core fields (orderId, action, totalQuantity, etc.)
 6. Handle extended fields (customerAccount, includeOvernight)
 7. Handle attached order fields (slOrderId, ptOrderId)
+8. Update sprint plan frontmatter in sprint_1_modernization_e041af8d.plan.md:
+   - Change `status: pending` to `status: completed` for proto-007 todo
 
 ---
 

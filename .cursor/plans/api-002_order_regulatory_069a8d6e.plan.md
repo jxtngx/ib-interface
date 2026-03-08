@@ -14,6 +14,9 @@ todos:
   - id: commit
     content: Git commit with [API-002]
     status: pending
+  - id: update-sprint
+    content: Update sprint_1_modernization_e041af8d.plan.md to mark API-002 completed
+    status: pending
 isProject: false
 ---
 

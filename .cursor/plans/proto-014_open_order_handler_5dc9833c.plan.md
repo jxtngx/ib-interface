@@ -20,6 +20,9 @@ todos:
   - id: commit
     content: Git commit with [PROTO-014]
     status: pending
+  - id: update-sprint
+    content: Update sprint_1_modernization_e041af8d.plan.md to mark PROTO-014 completed
+    status: pending
 isProject: false
 ---
 
